@@ -17,9 +17,9 @@ if(!empty($_POST))
   }else{
 
     require_once "conexion.php";
-    //aqui se va a encriptar la contraseña
-    $user = mysqli_real_query($conection,$_POST['usuario']);
-    $pass = md5( mysqli_real_query($conection, $_POST['clave']));
+    //aqui se va a encriptar la contraseña con seguridad md5
+    $user = mysqli_real_escape_string($conection,$_POST['usuario']);
+    $pass = md5( mysqli_real_escape_string($conection, $_POST['clave']));
 
     $query =mysqli_query($conection, "SELECT * FROM usuario WHERE usuario= '$user' AND clave ='$pass' ");
     $result =mysqli_num_rows($query);
