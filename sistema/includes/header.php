@@ -18,7 +18,7 @@ if (empty($_SESSION['active'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -26,8 +26,8 @@ if (empty($_SESSION['active'])) {
                             Usuarios
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Nuevo Usuario</a></li>
-                            <li><a class="dropdown-item" href="#">Lista de Usuarios</a></li>
+                            <li><a class="dropdown-item" href="registro_usuario.php">Nuevo Usuario</a></li>
+                            <li><a class="dropdown-item" href="lista_usuarios.php">Lista de Usuarios</a></li>
                         </ul>
                     </li>
 
@@ -73,6 +73,7 @@ if (empty($_SESSION['active'])) {
                     </li>
 
                     <li class="nav-item dropdown">
+                        <!--Aqui estara el usuario personalizado-->
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                            Usuario <?php echo $_SESSION['user'] ?>
                         </a>
@@ -81,9 +82,7 @@ if (empty($_SESSION['active'])) {
                         </ul>
 
                     </li>
-
                 </ul>
-
             </div>
         </div>
     </nav>
