@@ -1,6 +1,6 @@
 <?php
 
-    include "../conexion.php"
+    include "../conexion.php";
 
 ?>
 <html lang="en">
@@ -28,6 +28,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Usuario</th>
             <th>Rol</th>
             <th>Acciones</th>
         </tr> 
@@ -50,10 +51,11 @@
             <td><?php echo $data ["idusuario"] ?></td>
             <td><?php echo $data ["nombre"] ?></td>
             <td><?php echo $data ["correo"] ?></td>
+            <td><?php echo $data ["usuario"] ?></td>
             <td><?php echo $data ["rol"] ?></td>
             <td>
             
-                <a class="link_edit" href="">Editar</a>
+                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data ["idusuario"] ?>">Editar</a>
                 <a class="link_delet" href="">Eliminar</a>
             </td>
         </tr>

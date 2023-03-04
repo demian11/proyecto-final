@@ -56,7 +56,7 @@ if(!empty($_POST))
   <!--aqui abajo estara todo el contenido de la pagina-->
   <section id="container">
     <div class="form_register">
-        <h1>Registro usuario</h1>
+        <h1>Registrar usuario</h1>
         <hr>
         <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
 
