@@ -61,7 +61,7 @@ if(!empty($_POST))
         <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
 
         <form action="" method="post">
-            <label for="nombre">Nombre</label>
+            <label for="nombre">Nombre y apellido</label>
             <input type="text" name="nombre" id="nombre" placeholder="Nombre completo">
             <label for="correo">Correo electronico</label>
             <input type="email" name="correo" id="correo" placeholder="Correo electronico">

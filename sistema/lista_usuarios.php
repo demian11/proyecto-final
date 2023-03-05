@@ -26,7 +26,7 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
+            <th>Nombre y apellido</th>
             <th>Correo</th>
             <th>Usuario</th>
             <th>Rol</th>
@@ -35,8 +35,8 @@
         </thead>
 
         <?php
-
-         $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol");
+        //para los usuarios que se (eliminen) lo que hacemos es poner de estatus 1 a 0 para no no aparezcan en la tabla de la pagina pero si en la base de datos
+         $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1");
 
          $result = mysqli_num_rows($query);
          if($result > 0){
@@ -56,7 +56,15 @@
             <td>
             
                 <a class="link_edit" href="editar_usuario.php?id=<?php echo $data ["idusuario"] ?>">Editar</a>
-                <a class="link_delet" href="">Eliminar</a>
+              <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
+                <?php
+                  if($data ["idusuario"] != 1)
+                  {
+
+                ?>
+                <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data ["idusuario"] ?>">Eliminar</a>
+
+                <?php } ?>
             </td>
         </tr>
         <?php

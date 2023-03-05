@@ -10,7 +10,7 @@ if (empty($_SESSION['active'])) {
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <img src="/img/logo.jpg" alt="Logo" style="width:50px;" class="rounded-pill">
+            <img src="logo.jpg" alt="Logo" style="width:50px;" class="rounded-pill">
             <a class="navbar-brand">Ciber Center</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
