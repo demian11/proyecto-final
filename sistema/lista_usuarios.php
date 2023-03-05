@@ -1,6 +1,6 @@
 <?php
 
-    include "../conexion.php";
+include "../conexion.php";
 
 ?>
 <html lang="en">
@@ -16,65 +16,103 @@
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
   <?php include "includes/header.php"; ?>
+
   <!--aqui abajo estara todo el contenido de la pagina-->
   <section id="container">
     <br>
     <h1>Lista de usuarios</h1>
     <br>
-    <a href="registro_usuario.php" type="button" class="btn btn-success" > Agregar un nuevo usuario</a>
+    <a href="registro_usuario.php" type="button" class="btn btn-success"> Agregar un nuevo usuario</a>
     <table class="table table-striped">
-        <thead>
+      <thead>
         <tr>
-            <th>ID</th>
-            <th>Nombre y apellido</th>
-            <th>Correo</th>
-            <th>Usuario</th>
-            <th>Rol</th>
-            <th>Acciones</th>
-        </tr> 
-        </thead>
+          <th>ID</th>
+          <th>Nombre y apellido</th>
+          <th>Correo</th>
+          <th>Usuario</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
 
-        <?php
-        //para los usuarios que se (eliminen) lo que hacemos es poner de estatus 1 a 0 para no no aparezcan en la tabla de la pagina pero si en la base de datos
-         $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1");
+      <!--contenido que ayudara para el desplasamiento del paginador-->
+      <?php
 
-         $result = mysqli_num_rows($query);
-         if($result > 0){
+      $sql_registe = mysqli_query($conection, "SELECT COUNT(*) AS total_registro FROM usuario WHERE estatus =1");
+      $result_register = mysqli_fetch_array($sql_registe);
+      $total_registro = $result_register['total_registro'];
+      //en esta linea 43 podremos modificarla para decir cuantos registros podremos ver por pagina
+      $por_pagina = 5;
 
-            while ($data = mysqli_fetch_array($query)){
+      if (empty($_GET['pagina'])) {
+        $pagina = 1;
+      } else {
+        $pagina = $_GET['pagina'];
+      }
 
-           
-        ?>
+      $desde = ($pagina - 1) * $por_pagina;
+      $total_paginas = ceil($total_registro / $por_pagina);
 
-        <tbody>
-        <tr>
-            <td><?php echo $data ["idusuario"] ?></td>
-            <td><?php echo $data ["nombre"] ?></td>
-            <td><?php echo $data ["correo"] ?></td>
-            <td><?php echo $data ["usuario"] ?></td>
-            <td><?php echo $data ["rol"] ?></td>
-            <td>
-            
-                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data ["idusuario"] ?>">Editar</a>
-              <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
+      //para los usuarios que se (eliminen) lo que hacemos es poner de estatus 1 a 0 para no no aparezcan en la tabla de la pagina pero si en la base de datos
+      $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol 
+         WHERE estatus = 1 ORDER BY idusuario ASC LIMIT $desde, $por_pagina");
+
+      $result = mysqli_num_rows($query);
+
+      if ($result > 0) {
+
+        while ($data = mysqli_fetch_array($query)) {
+
+
+      ?>
+
+          <tbody>
+            <tr>
+              <td><?php echo $data["idusuario"] ?></td>
+              <td><?php echo $data["nombre"] ?></td>
+              <td><?php echo $data["correo"] ?></td>
+              <td><?php echo $data["usuario"] ?></td>
+              <td><?php echo $data["rol"] ?></td>
+              <td>
+
+                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"] ?>">Editar</a>
+                <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
                 <?php
-                  if($data ["idusuario"] != 1)
-                  {
+                if ($data["idusuario"] != 1) {
 
                 ?>
-                <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data ["idusuario"] ?>">Eliminar</a>
+                  <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data["idusuario"] ?>">Eliminar</a>
 
                 <?php } ?>
-            </td>
-        </tr>
+              </td>
+            </tr>
         <?php
-    }
-         }
+        }
+      }
 
         ?>
 
-        </tbody>
+          </tbody>
     </table>
+        <!--dentro del paginador le estamos dando la cantidad los registros que tenemos y los divide en distintas tablas-->
+    <div class="container mt-3 ">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="?pagina=<?php echo 1; ?>">Inicio</a></li>
+        <?php
+
+        for ($i = 1; $i <= $total_paginas; $i++) {
+          if($i == $pagina)
+          {
+            echo '<li class="page-item active"><a class="page-link" >'.$i.'</a></li>';
+          }else{
+          echo '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';
+          }
+        }
+        ?>
+
+        <li class="page-item"><a class="page-link" href="?pagina=<?php echo $total_paginas; ?>">Final</a></li>
+      </ul>
+    </div>
   </section>
 
   <!--Se agreggo una ruta de pide de pagina en caso de usarlo para el proyecto-->

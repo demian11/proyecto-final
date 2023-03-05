@@ -1,8 +1,16 @@
 <?php
 
 include "../conexion.php";
+//estas lineas de codigo de la 7- 11 lo que ayuda es a no eliminar el super usuario y nos mande a la lista de usuarios de forma segura
+//esto ayuda a dar seguridad para no eliminarlo desde el modo desarrollador del navegador 
+if (!empty($_POST)) 
+{ 
+  if($_POST ['idusuario'] == 1){
 
-if (!empty($_POST)) {
+    header("location: lista_usuarios.php");
+    exit;
+  }  
+  
   $idusuario = $_POST['idusuario'];
   //este query es la forma con la que se elimina un usuario
   // $query_delete =mysqli_query($conection, "DELETE FROM usuario WHERE idusuario = $idusuario ");
