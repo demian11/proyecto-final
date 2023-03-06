@@ -61,3 +61,23 @@ input,select{
     padding: 10px;
 }
 
+/* diseño del buscador 
+.form_search{
+    display: -webkit-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+    background: initial;
+    padding: 10px;
+    border-radius: 10px;
+}
+.form_search .btn_search{
+    background: #1faac8;
+    color: #fff;
+    padding: 0 20px;
+    border: 0;
+    cursor: pointer;
+    margin: left 10px;
+}
+*/

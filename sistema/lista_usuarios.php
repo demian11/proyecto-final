@@ -8,6 +8,7 @@ include "../conexion.php";
 <head>
   <title>Lista de usuarios</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
@@ -22,8 +23,25 @@ include "../conexion.php";
     <br>
     <h1>Lista de usuarios</h1>
     <br>
-    <a href="registro_usuario.php" type="button" class="btn btn-success"> Agregar un nuevo usuario</a>
+    
+    <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+  <a href="registro_usuario.php" type="button" class="btn btn-success"> Agregar un nuevo usuario</a>
+    <form action="buscar_usuario.php" method="get" class="d-flex" role="search">
+      <input class="form-control me-2"  name="busqueda" id="busqueda" type="search" placeholder="Buscar" aria-label="Buscar">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+
     <table class="table table-striped">
+<!--
+    <form action="buscar_usuario.php" method="get" class="form_search">
+    <input type="tex" name="busqueda" id="busqueda" placeholder="Buscar">
+    <input type="submit" value="Buscar" class="btn_search">
+    </form>
+-->
+
       <thead>
         <tr>
           <th>ID</th>
@@ -97,7 +115,7 @@ include "../conexion.php";
         <!--dentro del paginador le estamos dando la cantidad los registros que tenemos y los divide en distintas tablas-->
     <div class="container mt-3 ">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="?pagina=<?php echo 1; ?>">Inicio</a></li>
+        <li class="page-item"><a class="page-link" href="?pagina=<?php echo 1; ?>">Ir al inicio</a></li>
         <?php
 
         for ($i = 1; $i <= $total_paginas; $i++) {
@@ -110,7 +128,7 @@ include "../conexion.php";
         }
         ?>
 
-        <li class="page-item"><a class="page-link" href="?pagina=<?php echo $total_paginas; ?>">Final</a></li>
+        <li class="page-item"><a class="page-link" href="?pagina=<?php echo $total_paginas; ?>">Ir al final</a></li>
       </ul>
     </div>
   </section>
