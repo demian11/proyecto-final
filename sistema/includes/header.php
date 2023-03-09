@@ -21,7 +21,7 @@ if (empty($_SESSION['active'])) {
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                         
                         <?php
-                        if($_SESSION['rol'] == 1){
+                        //if($_SESSION['rol'] == 1){
                         ?>
                     </li>
 
@@ -35,7 +35,7 @@ if (empty($_SESSION['active'])) {
                         </ul>
                     </li>
 
-                    <?php } ?>
+                    <?php //} ?>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
