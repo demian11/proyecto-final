@@ -57,7 +57,7 @@ if (empty($_SESSION['active'])) {
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="registro_proveedor.php">Nuevo Proveedor</a></li>
-                            <li><a class="dropdown-item" href="#">Lista de Proveedores</a></li>
+                            <li><a class="dropdown-item" href="lista_proveedor.php">Lista de Proveedores</a></li>
                         </ul>
                     </li>
 
