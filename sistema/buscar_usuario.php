@@ -1,4 +1,9 @@
 <?php
+session_start();
+if($_SESSION['rol'] =! 1)
+{
+    header("location: ./");
+}
 
 include "../conexion.php";
 
@@ -25,6 +30,7 @@ include "../conexion.php";
         $busqueda = strtolower($_REQUEST['busqueda']);
         if (empty($busqueda)) {
             header("location: lista_usuarios.php");
+            mysqli_close($conection);
         }
 
         ?>
@@ -60,11 +66,14 @@ include "../conexion.php";
             <!--contenido que ayudara para el desplasamiento del paginador-->
             <?php
             $rol = '';
-            if ($busqueda == 'administrador') {
+            if ($busqueda == 'administrador') 
+            {
                 $rol = " OR rol LIKE '%1%' ";
+
             } else if ($busqueda == 'supervisor') {
 
                 $rol = " OR rol LIKE '%2%' ";
+
             } else if ($busqueda == 'vendedor') {
 
                 $rol = " OR rol LIKE '%3%' ";
@@ -72,9 +81,9 @@ include "../conexion.php";
 
             $sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM usuario 
             WHERE (idusuario LIKE '%hotmail%' OR 
-            nombre LIKE '%busqueda%' OR 
-            correo LIKE '%busqueda%' OR 
-            usuario LIKE '%busqueda%' $rol) AND estatus = 1");
+            nombre LIKE '%$busqueda%' OR 
+            correo LIKE '%$busqueda%' OR 
+            usuario LIKE '%$busqueda%' $rol) AND estatus = 1");
 
             $result_register = mysqli_fetch_array($sql_registe);
             $total_registro = $result_register['total_registro'];
@@ -95,14 +104,15 @@ include "../conexion.php";
             $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol FROM usuario u 
             INNER JOIN rol r ON u.rol = r.idrol 
                 WHERE 
-                (u.idusuario LIKE '%busqueda%' OR 
-                u.nombre LIKE '%busqueda%' OR 
-                u.correo LIKE '%busqueda%' OR 
-                u.usuario LIKE '%busqueda%' OR
-                r.rol LIKE '%busqueda%')
+                (u.idusuario LIKE '%$busqueda%' OR 
+                u.nombre LIKE '%$busqueda%' OR 
+                u.correo LIKE '%$busqueda%' OR 
+                u.usuario LIKE '%$busqueda%' OR
+                r.rol LIKE '%$busqueda%')
                 AND
                 estatus = 1 ORDER BY U.idusuario ASC LIMIT $desde, $por_pagina");
-
+           
+            mysqli_close($conection);
             $result = mysqli_num_rows($query);
 
             if ($result > 0) {
@@ -114,21 +124,21 @@ include "../conexion.php";
 
                     <tbody>
                         <tr>
-                            <td><?php echo $data["idusuario"] ?></td>
-                            <td><?php echo $data["nombre"] ?></td>
-                            <td><?php echo $data["correo"] ?></td>
-                            <td><?php echo $data["usuario"] ?></td>
-                            <td><?php echo $data["rol"] ?></td>
+                            <td><?php echo $data["idusuario"]; ?></td>
+                            <td><?php echo $data["nombre"]; ?></td>
+                            <td><?php echo $data["correo"]; ?></td>
+                            <td><?php echo $data["usuario"]; ?></td>
+                            <td><?php echo $data["rol"]; ?></td>
                             <td>
 
-                                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"] ?>">Editar</a>
+                                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"]; ?>">Editar</a>
 
                                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
                                 <?php
                                 if ($data["idusuario"] != 1) {
 
                                 ?>
-                                    <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data["idusuario"] ?>">Eliminar</a>
+                                    <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data["idusuario"]; ?>">Eliminar</a>
 
                                 <?php } ?>
                             </td>
@@ -143,7 +153,8 @@ include "../conexion.php";
         </table>
         <?php
 
-        if ($total_registro != 1) {
+        if ($total_registro != 1) 
+        {
 
         ?>
             <!--dentro del paginador le estamos dando la cantidad los registros que tenemos y los divide en distintas tablas-->

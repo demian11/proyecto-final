@@ -1,17 +1,12 @@
 <?php
 session_start();
-if($_SESSION['rol'] =! 1)
-{
-  header("location: ./");
-}
-
 include "../conexion.php";
 
 ?>
 <html lang="en">
 
 <head>
-  <title>Lista de usuarios</title>
+  <title>Lista de clientes</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="./css/style.css">
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
@@ -26,13 +21,13 @@ include "../conexion.php";
   <!--aqui abajo estara todo el contenido de la pagina-->
   <section id="container">
     <br>
-    <h1>Lista de usuarios</h1>
+    <h1>Lista de clientes</h1>
     <br>
     
     <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-  <a href="registro_usuario.php" type="button" class="btn btn-success"> Agregar un nuevo usuario</a>
-    <form action="buscar_usuario.php" method="get" class="d-flex" role="search">
+  <a href="registro_cliente.php" type="button" class="btn btn-success"> Agregar un nuevo cliente</a>
+    <form action="buscar_cliente.php" method="get" class="d-flex" role="search">
       <input class="form-control me-2"  name="busqueda" id="busqueda" type="search" placeholder="Buscar" aria-label="Buscar">
       <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
@@ -45,9 +40,9 @@ include "../conexion.php";
         <tr>
           <th>ID</th>
           <th>Nombre y apellido</th>
-          <th>Correo</th>
-          <th>Usuario</th>
-          <th>Rol</th>
+          <th>Telefono</th>
+          <th>Segundo telefono</th>
+          <th>Direccion</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -55,7 +50,7 @@ include "../conexion.php";
       <!--contenido que ayudara para el desplasamiento del paginador-->
       <?php
 
-      $sql_registe = mysqli_query($conection, "SELECT COUNT(*) AS total_registro FROM usuario WHERE estatus =1");
+      $sql_registe = mysqli_query($conection, "SELECT COUNT(*) AS total_registro FROM cliente WHERE estatus =1");
       $result_register = mysqli_fetch_array($sql_registe);
       $total_registro = $result_register['total_registro'];
       //en esta linea 43 podremos modificarla para decir cuantos registros podremos ver por pagina
@@ -71,8 +66,8 @@ include "../conexion.php";
       $total_paginas = ceil($total_registro / $por_pagina);
 
       //para los usuarios que se (eliminen) lo que hacemos es poner de estatus 1 a 0 para no no aparezcan en la tabla de la pagina pero si en la base de datos
-      $query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol 
-         WHERE estatus = 1 ORDER BY idusuario ASC LIMIT $desde, $por_pagina");
+      $query = mysqli_query($conection, "SELECT * FROM cliente  
+                                                  WHERE estatus = 1 ORDER BY idcliente ASC LIMIT $desde, $por_pagina");
 
       mysqli_close($conection);
 
@@ -87,22 +82,22 @@ include "../conexion.php";
 
           <tbody>
             <tr>
-              <td><?php echo $data["idusuario"] ?></td>
+              <td><?php echo $data["idcliente"] ?></td>
               <td><?php echo $data["nombre"] ?></td>
-              <td><?php echo $data["correo"] ?></td>
-              <td><?php echo $data["usuario"] ?></td>
-              <td><?php echo $data["rol"] ?></td>
+              <td><?php echo $data["telefono"] ?></td>
+              <td><?php echo $data["nit"] ?></td>
+              <td><?php echo $data["direccion"] ?></td>
               <td>
 
-                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"] ?>">Editar</a>
+                <a class="link_edit" href="editar_cliente.php?id=<?php echo $data["idcliente"] ?>">Editar</a>
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
-                <?php
-                if ($data["idusuario"] != 1) {
-
-                ?>
-                  <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data["idusuario"] ?>">Eliminar</a>
-
-                <?php } ?>
+              
+                <?php //if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){ ?>
+                  
+                  <a class="link_delet" href="eliminar_confirmar_cliente.php?id=<?php echo $data["idcliente"] ?>">Eliminar</a>
+                  
+                  <?php //}?>
+                
               </td>
             </tr>
         <?php

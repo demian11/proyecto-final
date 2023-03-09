@@ -1,4 +1,9 @@
 <?php
+    session_start();
+	if($_SESSION['rol'] =! 1)
+	{
+		header("location: ./");
+	}
 
 include "../conexion.php";
 
@@ -53,15 +58,16 @@ if (!empty($_POST))
 if (empty($_GET['id'])) 
 {
     header('location: lista_usuarios.php');
+    mysqli_close($conection);
 }
 $iduser = $_GET['id'];
 
-$sql = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, (u.rol) as idrol, 
-    (r.rol) as rol
-FROM usuario u
-INNER JOIN rol r
-on u.rol = r.idrol
-where idusuario= $iduser");
+$sql = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, (u.rol) as idrol,  (r.rol) as rol
+                                            FROM usuario u
+                                            INNER JOIN rol r
+                                            on u.rol = r.idrol
+                                            where idusuario= $iduser");
+mysqli_close($conection);
 $result_sql = mysqli_num_rows($sql);
 
 if ($result_sql == 0) {
@@ -122,8 +128,9 @@ if ($result_sql == 0) {
                 <label for="rol">Tipo de usuario</label>
 
                 <?php
-
+                include "../conexion.php";
                 $query_rol = mysqli_query($conection, "SELECT * FROM rol");
+                mysqli_close($conection);
                 $result_rol = mysqli_num_rows($query_rol);
 
                 ?>

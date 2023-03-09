@@ -1,6 +1,6 @@
 <!--en esta parte se le esta dando seguridad a la pagina para que cierre completamente la sesion-->
 <?php
-session_start();
+//session_start();
 
 if (empty($_SESSION['active'])) {
     header('location: ../index.php');
@@ -19,6 +19,10 @@ if (empty($_SESSION['active'])) {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
+                        
+                        <?php
+                        if($_SESSION['rol'] == 1){
+                        ?>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -31,13 +35,15 @@ if (empty($_SESSION['active'])) {
                         </ul>
                     </li>
 
+                    <?php } ?>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Clientes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Nuevo Cliente</a></li>
-                            <li><a class="dropdown-item" href="#">Lista de Clientes</a></li>
+                            <li><a class="dropdown-item" href="registro_cliente.php">Nuevo Cliente</a></li>
+                            <li><a class="dropdown-item" href="lista_clientes.php">Lista de Clientes</a></li>
                         </ul>
                     </li>
 

@@ -1,66 +1,60 @@
 <?php
 session_start();
-if($_SESSION['rol'] =! 1)
+//si no es administrador o supervisor no tendra permisos de borrar el registro
+if($_SESSION['rol'] =! 1 and $ $_SESSION['rol'] != 2)
 {
   header("location: ./");
 }
 
 include "../conexion.php";
-//estas lineas de codigo de la 7- 11 lo que ayuda es a no eliminar el super usuario y nos mande a la lista de usuarios de forma segura
+//estas lineas de codigo lo que ayuda es a no eliminar el super usuario y nos mande a la lista de usuarios de forma segura
 //esto ayuda a dar seguridad para no eliminarlo desde el modo desarrollador del navegador 
 if (!empty($_POST)) 
 { 
-  if($_POST ['idusuario'] == 1){
-
-    header("location: lista_usuarios.php");
+  if(empty($_POST['idcliente']))
+  {
+    header("location: lista_cliente.php");  
     mysqli_close($conection);
-    exit;
   }  
   
-  $idusuario = $_POST['idusuario'];
+  $idcliente = $_POST['idcliente'];
   //este query es la forma con la que se elimina un usuario
   // $query_delete =mysqli_query($conection, "DELETE FROM usuario WHERE idusuario = $idusuario ");
-  $query_delete = mysqli_query($conection, "UPDATE usuario SET estatus = 0 WHERE idusuario = $idusuario");
+  $query_delete = mysqli_query($conection, "UPDATE cliente SET estatus = 0 WHERE idcliente = $idcliente");
   mysqli_close($conection);
   if ($query_delete) {
-    header("location: lista_usuarios.php");
+    header("location: lista_clientes.php");
   } else {
-    echo "Error al eliminar el usuario";
+    echo "Error al eliminar el cliente";
   }
 }
 
 //aqui le estamos dando seguridad al (super usuario) de no ser eliminado y automaticamente nos rediriga a otra pestaña
-if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
-  header("location: lista_usuarios.php");
+if (empty($_REQUEST['id'])) {
+  header("location: lista_clientes.php");
   mysqli_close($conection);
 } else {
 
-  $idusuario = $_REQUEST['id'];
-  $query = mysqli_query($conection, "SELECT u.nombre, u.usuario, r.rol
-            FROM usuario u
-            INNER JOIN
-            rol r
-            ON u.rol = r.idrol
-            WHERE u.idusuario = $idusuario");
+  $idcliente = $_REQUEST['id'];
+  $query = mysqli_query($conection, "SELECT *FROM cliente WHERE idcliente = $idcliente");
 
   mysqli_close($conection);
   $result = mysqli_num_rows($query);
 
   if ($result > 0) {
     while ($data = mysqli_fetch_array($query)) {
-      $nombre = $data['nombre'];
-      $usuario = $data['usuario'];
-      $rol = $data['rol'];
+        $nit = $data['nit'];
+        $nombre = $data['nombre'];
     }
   } else {
-    header("location: lista_usuarios.php");
+    header("location: lista_clientes.php");
   }
 }
 ?>
 <html lang="en">
 
 <head>
-  <title>Eliminar usuario</title>
+  <title>Eliminar cliente</title>
   <meta charset="utf-8">
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
@@ -75,18 +69,17 @@ if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
     <div class="data_delete">
 
       <div class="jumbotron">
-        <h1 class="display-4">Seguro que quieres eliminar el usuario?</h1>
-        <p class="lead">Nombre y apellido: <span><?php echo $nombre; ?></span></p>
-        <p class="lead">usuario: <span><?php echo $usuario; ?></span></p>
-        <p class="lead">Tipo de usuario: <span><?php echo $rol; ?></span></p>
+        <h1 class="display-4">Seguro que quieres eliminar el cliente?</h1>
+        <p class="lead">Nombre del cliente: <span><?php echo $nombre; ?></span></p>
+        <p class="lead">Nit: <span><?php echo $nit; ?></span></p>
         <hr class="my-4">
         <p>Despues de eliminar el usuario no se podra revertiri los cambios</p>
         <p class="lead">
         <!-- aqui estaran los botones que hagan las acciones de eliminar o regresar, por favor no tocar!!!  (69-72)-->
         <form method="post" action="">
-          <input type="hidden" name="idusuario" value="<?php echo $idusuario; ?>">
-          <a href="lista_usuarios.php" class="btn btn-primary btn-lg">Cancelar</a>
-          <input type="submit" value="Aceptar" class="btn btn-primary btn-lg">
+          <input type="hidden" name="idcliente" value="<?php echo $idcliente; ?>">
+          <a href="lista_clientes.php" class="btn btn-primary btn-lg">Cancelar</a>
+          <input type="submit" value="Eliminar" class="btn btn-primary btn-lg">
         </form>
         </p>
       </div>

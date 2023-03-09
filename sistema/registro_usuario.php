@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if($_SESSION['rol'] =! 1)
+{
+  header("location: ./");
+}
 include "../conexion.php";
 
 if(!empty($_POST))
@@ -74,6 +78,7 @@ if(!empty($_POST))
             <?php
 
               $query_rol = mysqli_query($conection, "SELECT * FROM rol");
+              mysqli_close($conection);
               $result_rol =mysqli_num_rows($query_rol);
 
             ?>
