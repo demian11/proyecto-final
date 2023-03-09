@@ -21,6 +21,7 @@ if (empty($_SESSION['active'])) {
                         <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
                         
                         <?php
+                        //solo el administrador podra ver esta opcion
                         //if($_SESSION['rol'] == 1){
                         ?>
                     </li>
@@ -46,16 +47,21 @@ if (empty($_SESSION['active'])) {
                             <li><a class="dropdown-item" href="lista_clientes.php">Lista de Clientes</a></li>
                         </ul>
                     </li>
-
+                    <?php
+                    //solo el rol administrador y supervisor podran ver esta opcion
+                        //if($_SESSION['rol'] == 1) || $_SESSION['rol'] ==2{
+                        ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Proveedores
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Nuevo Proveedor</a></li>
+                            <li><a class="dropdown-item" href="registro_proveedor.php">Nuevo Proveedor</a></li>
                             <li><a class="dropdown-item" href="#">Lista de Proveedores</a></li>
                         </ul>
                     </li>
+
+                    <?php //} ?>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
