@@ -83,7 +83,7 @@ include "../conexion.php";
         while ($data = mysqli_fetch_array($query)) {
                 //aqui se crea una variable para mostrar las fechas
             $formato = 'Y-m-d H:i:s';
-            $fecha =DateTime::createFromFormat($formato,$data["date_add"])
+            $fecha =DateTime::createFromFormat($formato,$data["date_add"]);
 
       ?>
           <tbody>
