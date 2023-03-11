@@ -74,8 +74,8 @@ if (empty($_SESSION['active'])) {
                             ?>
                             <li><a class="dropdown-item" href="registro_producto.php">Nuevo Producto</a></li>
                             <?php //} ?>
-                            
-                            <li><a class="dropdown-item" href="#">Lista de Productos</a></li>
+
+                            <li><a class="dropdown-item" href="lista_producto.php">Lista de Productos</a></li>
                         </ul>
                     </li>
 

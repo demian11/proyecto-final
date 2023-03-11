@@ -1,33 +1,51 @@
 <?php
 session_start();
-if ($_SESSION['rol'] = !1 and $_SESSION['rol'] = !2) {
+if ($_SESSION['rol'] = ! 1 and $_SESSION['rol'] = !2) {
     header("location: ./");
 }
 include "../conexion.php";
 
 if (!empty($_POST)) {
     $alert = '';
-    if (empty($_POST['proveedor']) || empty($_POST['contacto']) || empty($_POST['telefono'] || empty($_POST['direccion']))) {
+    if (empty($_POST['proveedor']) || empty($_POST['producto']) || empty($_POST['precio'] || empty($_POST['cantidad']))) {
         $alert = '<p class="msg_error">Todos los campos son obligatorios</p>';
     } else {
 
-        $proveedor = $_POST['proveedor'];
-        $contacto = $_POST['contacto'];
-        $telefono = $_POST['telefono'];
-        $direccion = $_POST['direccion'];
-        $usuario_id = $_SESSION['idUser'];
+        $proveedor    = $_POST['proveedor'];
+        $producto     = $_POST['producto'];
+        $precio       = $_POST['precio'];
+        $cantidad     = $_POST['cantidad'];
+        $usuario_id   = $_SESSION['idUser'];
+
+        $foto         = $_FILES['foto'];
+        $nombre_foto  =$foto['name'];
+        $type         = $foto['type'];
+        $url_temp     = $foto['tmp_name'];
+
+        $imgProducto = 'img_producto.png';
+
+        if($nombre_foto =! '')
+        {
+            $destino ='img/uploads/';
+            $img_nombre ='img_'.md5(date('d-m-Y H:m:s'));
+            $imgProducto =$img_nombre.'.jpg';
+            $src =$destino.$imgProducto;
+        }
 
 
-        $query_insert = mysqli_query($conection, "INSERT INTO proveedor(proveedor,contacto,telefono,direccion,usuario_id) 
-                                                 VALUES('$proveedor','$contacto','$telefono','$direccion','$usuario_id')");
+
+        $query_insert = mysqli_query($conection, "INSERT INTO producto(proveedor,descripcion,precio,existencia,usuario_id,foto) 
+                                                 VALUES('$proveedor','$producto','$precio','$cantidad','$usuario_id', '$imgProducto')");
 
         if ($query_insert) {
-            $alert = '<p class="msg_save">Proveedor guardado correctamente</p>';
+            if($nombre_foto =! ''){
+                move_uploaded_file($url_temp,$src);
+            }
+            $alert = '<p class="msg_save">Producto guardado correctamente</p>';
         } else {
-            $alert = '<p class="msg_error">Error al Guardar el cliente </p>';
+            $alert = '<p class="msg_error">Error al Guardar el producto </p>';
         }
     }
-    //mysqli_close($conection);
 }
 
 
@@ -58,7 +76,7 @@ if (!empty($_POST)) {
 
                 <?php
                 $query_proveedor = mysqli_query($conection, "SELECT codproveedor, proveedor FROM proveedor WHERE
-            estatus=1 ORDER BY proveedor ASC");
+                 estatus=1 ORDER BY proveedor ASC");
                 $result_proveedor = mysqli_num_rows($query_proveedor);
                 mysqli_close($conection);
 
