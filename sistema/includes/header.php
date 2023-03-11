@@ -68,7 +68,13 @@ if (empty($_SESSION['active'])) {
                             Productos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Nuevo Producto</a></li>
+                            <?php
+                            //solo el rol administrador y supervisor podran ver esta opcion
+                            //if($_SESSION['rol'] == 1) || $_SESSION['rol'] ==2{
+                            ?>
+                            <li><a class="dropdown-item" href="registro_producto.php">Nuevo Producto</a></li>
+                            <?php //} ?>
+                            
                             <li><a class="dropdown-item" href="#">Lista de Productos</a></li>
                         </ul>
                     </li>
