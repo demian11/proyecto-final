@@ -105,3 +105,19 @@ if (empty($_SESSION['active'])) {
         </div>
     </nav>
 </header>
+<div class="modal">
+    <div class="bodyModal"></div>
+    <form action="header_submit" method="post" name="form_add-product" id="form_add_product" onsubmit="
+        event.preventDefault(); sendDataProduct()">
+        <h1><i class="fas fa-cubes" style="font-size: 45pt;"></i><br> Agregar producto</h1>
+        <h2 class="nameProducto">Monitor LCD 17</h2><br>
+        <input type="number" name="cantidad" id="txtCantidad" placeholder="Cantidad del producto" require><br>
+        <input type="text" name="precio" id="txtPrecio" placeholder="Precio del producto" require>
+        <input type="hidden" name="producto_id" id="producto_id" require><br>
+        <input type="hidden" name="action" value="addProduct" require>
+        <div class="alert alertAddProduct"></div>
+        <button type="submit" class="btn_new">Agregar</button>
+        <a href="#" class="btn_ok closeModal" onclick="closeModal();">Cerrar</a>
+    </form>
+
+</div>

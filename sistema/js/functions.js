@@ -40,4 +40,15 @@ $(document).ready(function(){
 
     });
 
+    //mostrar form add product
+    $('.add_product').click(function(e){
+        e.preventDefault();
+        var producto = $(this).attr('product');
+        $('.modal').fadeIn();
+    });
+
 });
+
+function coloseModal(){
+    $('.modal').fadeOut();
+}
