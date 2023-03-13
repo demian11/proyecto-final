@@ -88,7 +88,7 @@ include "../conexion.php";
       ?>
 
           <tbody>
-            <tr>
+            <tr class="row<?php echo $data["codproducto"]; ?>">
               <td><?php echo $data["codproducto"]; ?></td>
               <td><?php echo $data["descripcion"]; ?></td>
               <td><?php echo $data["precio"]; ?></td>
