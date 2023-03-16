@@ -131,7 +131,7 @@ input,select{
     height: auto;
     margin: auto;
 }
-/* estos son los diseños para la ventana emergente cuando se editen el almacen y precio del producto */
+/* estos son los diseños para la ventana emergente cuando se editen el almacen y precio del producto 
 .modal{
     position: fixed;
     width: 100%;
@@ -161,3 +161,4 @@ input,select{
     width: 420px;
     text-align: center;
 }
+*/

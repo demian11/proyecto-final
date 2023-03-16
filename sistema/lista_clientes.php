@@ -44,6 +44,7 @@ include "../conexion.php";
           <th>Segundo telefono</th>
           <th>Direccion</th>
           <th>Acciones</th>
+
         </tr>
       </thead>
 
@@ -92,11 +93,11 @@ include "../conexion.php";
                 <a class="link_edit" href="editar_cliente.php?id=<?php echo $data["idcliente"] ?>">Editar</a>
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
               
-                <?php //if($_SESSION['rol'] ==1 || $_SESSION['rol'] == 2){ ?>
+                <?php if($_SESSION['rol'] ==1 || $_SESSION['rol'] == 2){ ?>
                   
                   <a class="link_delet" href="eliminar_confirmar_cliente.php?id=<?php echo $data["idcliente"] ?>">Eliminar</a>
                   
-                  <?php //}?>
+                  <?php }?>
                 
               </td>
             </tr>

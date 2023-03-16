@@ -42,9 +42,34 @@ include "../conexion.php";
           <th>Descripcion</th>
           <th>Precio</th>
           <th>Existencia</th>
-          <th>Proveedor</th>
+          <th>
+          <?php
+                $query_proveedor = mysqli_query($conection, "SELECT codproveedor, proveedor FROM proveedor WHERE
+                 estatus=1 ORDER BY proveedor ASC");
+                $result_proveedor = mysqli_num_rows($query_proveedor);
+
+                ?>
+                <select name="proveedor" id="search_proveedor">
+                    <?php
+                    if ($result_proveedor > 0) {
+                        while ($proveedor = mysqli_fetch_array($query_proveedor)) {
+                    ?>
+                            <!--aqui estamos mostrando los proveedores desde la base de datos en vez de hacerlo de forma estatica-->
+                            <option value="<?php echo $proveedor['codproveedor']; ?>"><?php echo $proveedor['proveedor']; ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+
+                </select>
+          </th>
           <th>Foto</th>
+           <!--si no eres de ninguno de estos roles no podras editar y eliminar y directamente no se mostrara la tabla acciones-->
+          <?php //if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){ ?>
           <th>Acciones</th>
+          <?php
+          //}
+          ?>
         </tr>
       </thead>
 
@@ -98,7 +123,7 @@ include "../conexion.php";
               <td>         
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
                                 
-                <?php //if($_SESSION['rol'] ==1 || $_SESSION['rol'] == 2){ ?>
+                <?php if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){ ?>
               <a class="link_add add_product" product="<?php echo $data["codproducto"] ?>" href="#">Agregar</a>
                     
                 <a class="link_edit" href="editar_producto.php?id=<?php echo $data["codproducto"] ?>">Editar</a>
@@ -106,7 +131,7 @@ include "../conexion.php";
                   <a class="link_delet" href="eliminar_confirmar_producto.php?id=<?php echo $data["codproducto"] ?>">Eliminar</a>
                   
               </td>
-              <?php //}?>
+              <?php }?>
             </tr>
         <?php
         }

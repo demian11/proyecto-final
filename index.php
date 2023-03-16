@@ -32,9 +32,9 @@ if(!empty($_POST))
       $_SESSION['active'] =true;
       $_SESSION['idUser'] = $data ['idusuario'];
       $_SESSION['nombre'] = $data['nombre'];
-      $_SESSION['email'] = $data['email'];
-      $_SESSION['user'] = $data['usuario'];
-      $_SESSION['email'] = $data['rol'];
+      $_SESSION['correo'] = $data['correo'];
+      $_SESSION['usuario'] = $data['usuario'];
+      $_SESSION['rol'] = $data['rol'];
 
       header('location: sistema/');
     }else{

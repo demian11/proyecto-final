@@ -1,6 +1,7 @@
 <?php
 session_start();
-if ($_SESSION['rol'] = ! 1 and $_SESSION['rol'] = !2) {
+//si no es admin o supervisor no podra editar los productos y te manda al index
+if ($_SESSION['rol'] !=  1 and $_SESSION['rol'] != 2) {
     header("location: ./");
 }
 include "../conexion.php";
