@@ -53,10 +53,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php
                             //solo el rol administrador y supervisor podran ver esta opcion
-                            //if($_SESSION['rol'] == 1 || $_SESSION['rol'] ==2){
+                            if($_SESSION['rol'] == 1 || $_SESSION['rol'] ==2){
                             ?>
                             <li><a class="dropdown-item" href="registro_producto.php">Nuevo Producto</a></li>
-                            <?php //} ?>
+                            <?php } ?>
 
                             <li><a class="dropdown-item" href="lista_producto.php">Lista de Productos</a></li>
                         </ul>
@@ -64,11 +64,11 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Facturas
+                            Ventas
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Nueva Factura</a></li>
-                            <li><a class="dropdown-item" href="#">Lista de Facturas</a></li>
+                            <li><a class="dropdown-item" href="nueva_venta.php">Nueva venta</a></li>
+                            <li><a class="dropdown-item" href="#">Ventas</a></li>
                         </ul>
 
                     </li>
