@@ -68,7 +68,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="nueva_venta.php">Nueva venta</a></li>
-                            <li><a class="dropdown-item" href="#">Ventas</a></li>
+                            <li><a class="dropdown-item" href="ventas.php">Ventas</a></li>
                         </ul>
 
                     </li>
