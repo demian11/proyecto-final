@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../conexion.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@ include "../conexion.php";
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <?php include "includes/scripts.php"; ?>
     <title>nueva venta</title>
 </head>
@@ -58,13 +59,13 @@ include "../conexion.php";
                 <div class="datos">
                     <div class="wd50">
                         <label>Vendedor</label>
-                        <p>Damian Omar</p>
+                        <p><?php echo $_SESSION['nombre']; ?></p>
                     </div>
                     <div class="wd50">
                         <label>Acciones</label>
                         <div id="acciones_venta">
-                            <a href="#" class="btn_ok textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular</a>
-                            <a href="#" class="btn_new textcenter" id="btn_facturar_venta"><i class="far fa-edit"></i>Procesar</a>
+                            <a href="#" class="btn_ok textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular venta</a>
+                            <a href="#" class="btn_new textcenter" id="btn_facturar_venta" style="display: none;"><i class="far fa-edit"></i>Procesar venta</a>
                         </div>
                     </div>
                 </div>
@@ -101,47 +102,28 @@ include "../conexion.php";
                     <th> Accion</th>
                 </tr>
             </thead>
+
             <tbody id="detalle_venta">
-                <tr>
-                    <td>1</td>
-                    <td colspan="2">Mouse USB</td>
-                    <td class="textcenter">1</td>
-                    <td class="textright">100.00</td>
-                    <td class="textright">100.00</td>
-                    <td class="">
-                        <a class="link_delete" href="#" onclick="event.preventDefault();
-                    del_product_detalle(1);"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td colspan="2">Teclado</td>
-                    <td class="textcenter">1</td>
-                    <td class="textright">150.00</td>
-                    <td class="textright">1500.00</td>
-                    <td class="">
-                        <a class="link_delete" href="#" onclick="event.preventDefault(); del_product_detalle(1);"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+               <!--contenido traido por ajax-->
 
             </tbody>
             <tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5" class="textriggt">Subtotal</td>
-                    <td class="textright">1000.00</td>
-                </tr>
-                <tr>
-                <td colspan="5" class="textriggt">IVA (12%)</td>
-                    <td class="textright">1000.00</td>
-                </tr>
-            </tfoot>
+            <tfoot id="detalle_totales">
+                <!--contenido traido desde el ajax-->
+            </tfoot>    
             </tbody>
         </table>
         </div>
     </section>
 
     <?php include "includes/footer.php"; ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var usuarioid = '<?php echo $_SESSION['idUser']; ?>';
+            serchForDetalle(usuarioid);
+        });
+
+        </script>
 </body>
 
 </html>

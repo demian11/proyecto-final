@@ -59,25 +59,26 @@ if(!empty($_POST))
     
     <title>Inciar sesion</title>
     <!--dentro del style se encuentra la ruta de la imagen que aparece en el login-->
-    <style>
+   
+ <style>
         body{
             background:#BB1E19;
-            background: linear-gradient(to right,#2AC6AF, #E3821C)
+            background: linear-gradient(to right,#5B2C6F, #16A085)
         }
         .bg{
-            background-image: url(./img/e.jpg);
-            background-position: center center;
+            background-image: url(./img/logo.png);
+            background-position: center  right;
         }
     </style>
 </head>
 <body>
 
-    <div class="container w-75 bg-primary mt-5 rounded shadow">
+<div class="container w-100 bg-link mt-5 rounded shadow">
         <div class="row align-items-stretch">
-            <div class="col bg d-done d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+            <div class="col bg d-done d-lg-block col-md-7 col-lg-8 col-xl-6 rounded">
         
         </div>
-        <div class="col bg-white p-5 rounded-end">
+        <div class="col bg-link p-5 rounded-end">
             <h2 class="fw-bold text-center py-5">Bienvenido</h2>
 
         <section id ="container">

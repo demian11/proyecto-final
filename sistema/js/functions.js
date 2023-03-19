@@ -85,35 +85,35 @@ $(document).ready(function () {
     });
 
     //modal form delete product
-    $('del_product').click(function(e){
+    $('del_product').click(function (e) {
         e.preventDefault();
         var product = $(this).attr('product');
         var action = 'infoProducto';
 
         $.ajax({
-            url:'ajax.php',
+            url: 'ajax.php',
             type: 'POST',
             async: true,
-            data:{action:action,producto:producto},
+            data: { action: action, producto: producto },
 
-            ssucceess:function(response){
-                if(response != 'error'){
-                    var info =JSON.parse(response);
+            ssucceess: function (response) {
+                if (response != 'error') {
+                    var info = JSON.parse(response);
 
                     $('bodyModal').html('<form action="" method="post" name="form_add_product" id="form_add_product" onsubmit="event.preventDefault(); sendDataProduct();">' +
-                    '<h1><i class="fas fa-cubes" style="font-size: 45pt;"></i><br> Agregar producto</h1>' +
-                    '<h2 class="nameProducto">' + info.descripcion + '</h2><br>' +
-                    '<input type="number" name="cantidad" id="txtCantidad" placeholder="Cantidad del producto" required><br>' +
-                    '<input type="text" name="precio" id="txtPrecio" placeholder="Precio del producto" required>' +
-                    '<input type="hidden" name="producto_id" id="producto_id" value="' + info.codproducto + '" required><br>' +
-                    '<input type="hidden" name="action" value="addProduct" required>' +
-                    '<div class="alert alertAddProduct"></div>' +
-                    '<button type="submit" class="btn_new">Agregar</button>' +
-                    '<a href="#" class="btn_ok closeModal" onclick="closeModal();">Cerrar</a>' +
-                    '</form>');
+                        '<h1><i class="fas fa-cubes" style="font-size: 45pt;"></i><br> Agregar producto</h1>' +
+                        '<h2 class="nameProducto">' + info.descripcion + '</h2><br>' +
+                        '<input type="number" name="cantidad" id="txtCantidad" placeholder="Cantidad del producto" required><br>' +
+                        '<input type="text" name="precio" id="txtPrecio" placeholder="Precio del producto" required>' +
+                        '<input type="hidden" name="producto_id" id="producto_id" value="' + info.codproducto + '" required><br>' +
+                        '<input type="hidden" name="action" value="addProduct" required>' +
+                        '<div class="alert alertAddProduct"></div>' +
+                        '<button type="submit" class="btn_new">Agregar</button>' +
+                        '<a href="#" class="btn_ok closeModal" onclick="closeModal();">Cerrar</a>' +
+                        '</form>');
                 }
             },
-            error:function(error){
+            error: function (error) {
                 console.log(error);
             }
         });
@@ -124,11 +124,11 @@ $(document).ready(function () {
     $('#search_proveedor').change(function (e) {
         e.preventDefault();
         var sistema = getUrl();
-        location.href = sistema +'buscar_productos.php?proveedor='+$(this).val();
+        location.href = sistema + 'buscar_productos.php?proveedor=' + $(this).val();
     });
 
     //activa campos para registrar cliente
-    $('.btn_new_cliente').click(function(e){
+    $('.btn_new_cliente').click(function (e) {
         e.preventDefault();
         $('#nom_cliente').removeAttr('disabled');
         $('#tel_cliente').removeAttr('disabled');
@@ -138,7 +138,7 @@ $(document).ready(function () {
     });
 
     //Buscar cliente en el formulario de ventas
-    $('#nit_cliente').keyup(function(e){
+    $('#nit_cliente').keyup(function (e) {
         e.preventDefault();
         var cl = $(this).val();
         var action = 'searchCliente';
@@ -146,19 +146,18 @@ $(document).ready(function () {
         $.ajax({
             url: 'ajax.php',
             type: "POST",
-            async :true,
-            data: {action: action,cliente:cl},
+            async: true,
+            data: { action: action, cliente: cl },
 
-            success:function(response)
-            {
-                if(response == 0){
+            success: function (response) {
+                if (response == 0) {
                     $('#idcliente').val('');
                     $('#nom_cliente').val('');
                     $('#tel_cliente').val('');
                     $('#dir_cliente').val('');
                     //mostrar boton agregar
                     $('.btn_new_cliente').slideDown();
-                }else{
+                } else {
                     var data = $.parseJSON(response);
                     $('#idcliente').val(data.idcliente);
                     $('#nom_cliente').val(data.nombre);
@@ -168,22 +167,22 @@ $(document).ready(function () {
                     $('.btn_new_cliente').slideUp();
 
                     //bloque campos
-                    $('#nom_cliente').attr('disabled','disabled');
-                    $('#tel_cliente').attr('disabled','disabled');
-                    $('#dir_cliente').attr('disabled','disabled');
+                    $('#nom_cliente').attr('disabled', 'disabled');
+                    $('#tel_cliente').attr('disabled', 'disabled');
+                    $('#dir_cliente').attr('disabled', 'disabled');
 
                     //ocultar boton guardar
                     $('#div_registro_cliente').slideUp();
                 }
             },
-            error: function(error){
+            error: function (error) {
 
             }
         });
     });
 
     //crear cliente- ventas
-    $('#form_new_cliente_venta').submit(function(e){
+    $('#form_new_cliente_venta').submit(function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -192,14 +191,13 @@ $(document).ready(function () {
             async: true,
             data: $('#form_new_cliente_venta').serialize(),
 
-            success: function(response)
-            {
-                if(response != 'error'){
+            success: function (response) {
+                if (response != 'error') {
                     $('#idcliente').val(response);
                     //bloque campos
-                    $('#nom_cliente').attr('disabled','disabled');
-                    $('#tel_cliente').attr('disabled','disabled');
-                    $('#dir_cliente').attr('disabled','disabled');
+                    $('#nom_cliente').attr('disabled', 'disabled');
+                    $('#tel_cliente').attr('disabled', 'disabled');
+                    $('#dir_cliente').attr('disabled', 'disabled');
 
                     //ocultar boton agregar
                     $('.btn_new_cliente').slideUp();
@@ -207,14 +205,238 @@ $(document).ready(function () {
                     $('#div_registro_cliente').slideUp();
                 }
             },
-            error:function(error){
+            error: function (error) {
 
             }
         });
 
     });
 
+    //buscar producto
+    $('#txt_cod_producto').keyup(function (e) {
+        e.preventDefault();
+
+        var producto = $(this).val();
+        var action = 'infoProducto';
+        if (producto != '') {
+            $.ajax({
+                url: 'ajax.php',
+                type: "POST",
+                async: true,
+                data: { action: action, producto: producto },
+
+                success: function (response) {
+                    if (response != 'error') {
+                        var info = JSON.parse(response);
+                        $('#txt_descripcion').html(info.descripcion);
+                        $('#txt_existencia').html(info.existencia);
+                        $('#txt_cant_producto').val('1');
+                        $('#txt_precio').html(info.precio);
+                        $('#txt_precio_total').html(info.precio);
+
+                        //activar cantidad
+                        $('#txt_cant_producto').removeAttr('disabled');
+
+                        //Mostrar boton agregar
+                        $('#add_product_venta').slideDown();
+                    } else {
+                        $('#txt_descripcion').html('-');
+                        $('#txt_existencia').html('-');
+                        $('#txt_cant_producto').val('0');
+                        $('#txt_precio').html('0.00');
+                        $('#txt_precio_total').html('0.00');
+
+                        //Bloquear cantidad
+                        $('#txt_cant_producto').attr('disabled', 'disabled');
+
+                        //ocultar boton agregar
+                        $('#add_product_venta').slideUp();
+                    }
+
+
+                },
+                error: function (error) {
+
+                }
+            });
+        }
+
+    });
+
+    //validar cantidad del producto antes de agregar
+    $('#txt_cant_producto').keyup(function (e) {
+        e.preventDefault();
+        var precio_total = $(this).val() * $('#txt_precio').html();
+        var existencia = parseInt($('#txt_existencia').html());
+        $('#txt_precio_total').html(precio_total);
+
+        //ocultar el boton agregar si la cantidad es menor que 1
+        if (($(this).val() < 1 || isNaN($(this).val())) || ($(this).val() > existencia)) {
+            $('#add_product_venta').slideUp();
+        } else {
+            $('#add_product_venta').slideDown();
+        }
+    });
+
+    //Agregar producto al detalle
+    $('#add_product_venta').click(function (e) {
+        e.preventDefault();
+
+        if ($('#txt_cant_producto').val() > 0) {
+            var codproducto = $('#txt_cod_producto').val();
+            var cantidad = $('#txt-cant_producto').val();
+            var action = 'addProductoDetalle';
+
+            $.ajax({
+                url: 'ajax.php',
+                type: "POST",
+                async: true,
+                data: { action: action, producto: codproducto, cantidad: cantidad },
+
+                success: function (response) 
+                {
+                    if (response != 'error') 
+                    {
+
+                        var info = JSON.parse(response);
+                        $('#detalle_venta').html(info.detalle);
+                        $('#detalle_totales').html(info.totales);
+
+                        $('#txt_cod_producto').val('');
+                        $('#txt_descripcion').html('-');
+                        $('#txt_existencia').html('-');
+                        $('#txt_cant_producto').val('0');
+                        $('#txt_precio').html('0.00');
+                        $('#txt_precio_total').html('0.00');
+
+                        //bloquear cantidad
+                        $('#txt_cant_producto').attr('disabled', 'disabled');
+
+                        //bloquear boton agregar
+                        $('#add_product_venta').slideUp();
+
+                    } else {
+                        console.log('no data');
+                    }
+                    viewProcesar();
+                },
+                error: function (error) {
+
+                }
+            });
+        }
+    });
+
+    //anular venta (con esto eliminara todos los productos agregados anteriormente del forulario de ventas)
+    $('#btn_anular_venta').click(function(e){
+        e.preventDefault();
+
+        var rows = $('#detalle_venta tr').length;
+        if(rows > 0)
+        {
+            var action = 'anularVenta';
+
+            $.ajax({
+                url:'ajax.php',
+                type: "POST",
+                async: true,
+                data: {action:action},
+
+                success: function(response)
+                {
+                    
+                    if(response != 'error')
+                    {
+                        location.reload();
+                    }
+                },
+                error: function(error){
+                }
+            });
+        }
+    });
+
+
 });//end ready
+
+function del_product_detalle(correlativo) {
+
+    var action = 'delProductoDetalle';
+    var id_detalle = correlativo;
+    $.ajax({
+        url: 'ajax.php',
+        type: "POST",
+        async: true,
+        data: { action: action, id_detalle: id_detalle },
+
+        success: function (response) 
+        {
+            if (response != 'error') 
+            {
+                var info = JSON.parse(response);
+                var info = JSON.parse(response);
+                $('#detalle_venta').html(info.detalle);
+                $('#detalle_totales').html(info.totales);
+
+                $('#txt_cod_producto').val('');
+                $('#txt_descripcion').html('-');
+                $('#txt_existencia').html('-');
+                $('#txt_cant_producto').val('0');
+                $('#txt_precio').html('0.00');
+                $('#txt_precio_total').html('0.00');
+
+                //bloquear cantidad
+                $('#txt_cant_producto').attr('disabled', 'disabled');
+
+                //bloquear boton agregar
+                $('#add_product_venta').slideUp();
+
+            } else {
+                $('#detalle_venta').html('');
+                $('#detalle_totales').html('');
+            }
+            viewProcesar();
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+function viewProcesar(){
+    if($('#detalle_venta tr').length > 0)
+    {
+        $('#btn_facturar_venta').show();
+    }else{
+        $('#btn_facturar_venta').hide();
+    }
+}
+
+function serchForDetalle(id) {
+    var action = 'serchForDetalle';
+    var user = id;
+    $.ajax({
+        url: 'ajax.php',
+        type: "POST",
+        async: true,
+        data: { action: action, user: user },
+
+        success: function (response) {
+            if (response != 'error') {
+                var info = JSON.parse(response);
+                $('#detalle_venta').html(info.detalle);
+                $('#detalle_totales').html(info.totales);
+
+            } else {
+                console.log('no data');
+            }
+            viewProcesar();
+        },
+        error: function (error) {
+
+        }
+    });
+}
 
 function getUrl() {
     var loc = window.location;
