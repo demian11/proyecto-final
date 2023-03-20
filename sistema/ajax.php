@@ -22,7 +22,7 @@ if (!empty($_POST)) {
         echo 'error';
         exit;
     }
-    
+
     //agregar productos a entrada
     if ($_POST['action'] == 'addProduct') 
     {
@@ -98,12 +98,13 @@ if (!empty($_POST)) {
     }
 
     //registra cliente -ventas 
-    if ($_POST['action'] == 'addCliente') {
-        $nit = $_POST['nit_cliente'];
-        $nombre = $_POST['nom_cliente'];
-        $telefono = $_POST['tel_cliente'];
-        $direccion = $_POST['dir_cliente'];
-        $usuario_id = $_SESSION['idUser'];
+    if ($_POST['action'] == 'addCliente') 
+    {
+        $nit         = $_POST['nit_cliente'];
+        $nombre      = $_POST['nom_cliente'];
+        $telefono    = $_POST['tel_cliente'];
+        $direccion   = $_POST['dir_cliente'];
+        $usuario_id  = $_SESSION['idUser'];
 
         $query_insert = mysqli_query($conection, "INSERT INTO cliente(
                                                         nit,nombre,telefono,direccion,usuario_id)
@@ -122,12 +123,13 @@ if (!empty($_POST)) {
 
     //Agregar producto al detalle temporal
     if ($_POST['action'] == 'addProductoDetalle') {
-        if (empty($_POST['producto']) || empty($_POST['cantidad'])) {
+        if (empty($_POST['producto']) || empty($_POST['cantidad'])) 
+        {
             echo 'error';
         } else {
-            $codproducto = $_POST['producto'];
-            $cantidad = $_POST['cantidad'];
-            $token = md5($_SESSION['idUser']);
+            $codproducto   = $_POST['producto'];
+            $cantidad      = $_POST['cantidad'];
+            $token         = md5($_SESSION['idUser']);
 
             $query_iva = mysqli_query($conection, "SELECT iva FROM configuracion");
             $result_iva = mysqli_num_rows($query_iva);
@@ -136,9 +138,9 @@ if (!empty($_POST)) {
             $result = mysqli_num_rows($query_detalle_temp);
 
             $detalleTabla = '';
-            $sub_total = 0;
-            $iva = 0;
-            $total = 0;
+            $sub_total    = 0;
+            $iva          = 0;
+            $total        = 0;
             $arrayData = array();
 
             if ($result > 0) {
@@ -146,26 +148,28 @@ if (!empty($_POST)) {
                     $info_iva = mysqli_fetch_assoc($query_iva);
                     $iva = $info_iva['iva'];
                 }
+
                 while ($data = mysqli_fetch_assoc($query_detalle_temp)) {
-                    $precioTotal = round($data['cantidad'] * $data['precio_venta'], 2);
-                    $sub_total = round($sub_total + $precioTotal, 2);
-                    $total = round($total + $precioTotal, 2);
+                    $precioTotal  = round($data['cantidad'] * $data['precio_venta'], 2);
+                    $sub_total    = round($sub_total + $precioTotal, 2);
+                    $total        = round($total + $precioTotal, 2);
+
                     //aqui se puso un . detras de la variables para concatenar los datos (posiblemente cause problemas todo este bien)
                     $detalleTabla .= '<tr>
-                    <td>' . $data['codproducto'] . '</td>
+                    <td>'.$data['codproducto'].'</td>
                     <td colspan="2">' . $data['descripcion'] . '</td>
                     <td class="textcenter">' . $data['cantidad'] . '</td>
                     <td class="textright">' . $data['precio_venta'] . '</td>
                     <td class="textright">' . $precioTotal . '</td>
                     <td class="">
-                        <a class="link_delete" href="#" onclick="event.preventDefault(); del_product_detalle(' . $data['codproducto'] . ');"><i class="far fa-trash-alt"></i></a>
+                        <a class="link_delete" href="#" onclick="event.preventDefault(); del_product_detalle('.$data['codproducto'].');"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>';
                 }
 
                 $impuesto = round($sub_total * ($iva / 100), 2);
                 $tl_sniva = round($sub_total - $impuesto, 2);
-                $total = round($tl_sniva + $impuesto, 2);
+                $total    = round($tl_sniva + $impuesto, 2);
 
                 $detalleTotales = '<tr>
                                     <td colspan="5" class="textriggt">Subtotal</td>

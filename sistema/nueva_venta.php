@@ -114,6 +114,13 @@ include "../conexion.php";
             </tbody>
         </table>
         </div>
+        <!--eliminar codigo de aqui hasta terminar el tbodoy de aqui abajo-->
+        <tbody>
+            <tfoot id="detalle_totales">
+                <!--contenido traido desde el ajax-->
+            </tfoot>    
+            </tbody>
+
     </section>
 
     <?php include "includes/footer.php"; ?>

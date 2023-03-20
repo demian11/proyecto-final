@@ -63,16 +63,16 @@ $(document).ready(function () {
                     //$('.nameProducto').html(info.descripcion);
 
                     $('.bodyModal').html('<form action="" method="post" name="form_add_product" id="form_add_product" onsubmit="event.preventDefault(); sendDataProduct();">' +
-                        '<h1><i class="fas fa-cubes" style="font-size: 45pt;"></i><br> Agregar producto</h1>' +
-                        '<h2 class="nameProducto">' + info.descripcion + '</h2><br>' +
-                        '<input type="number" name="cantidad" id="txtCantidad" placeholder="Cantidad del producto" required><br>' +
-                        '<input type="text" name="precio" id="txtPrecio" placeholder="Precio del producto" required>' +
-                        '<input type="hidden" name="producto_id" id="producto_id" value="' + info.codproducto + '" required><br>' +
-                        '<input type="hidden" name="action" value="addProduct" required>' +
-                        '<div class="alert alertAddProduct"></div>' +
-                        '<button type="submit" class="btn_new">Agregar</button>' +
-                        '<a href="#" class="btn_ok closeModal" onclick="closeModal();">Cerrar</a>' +
-                        '</form>');
+                                            '<h1><i class="fas fa-cubes" style="font-size: 45pt;"></i><br> Agregar producto</h1>' +
+                                            '<h2 class="nameProducto">' + info.descripcion + '</h2><br>' +
+                                            '<input type="number" name="cantidad" id="txtCantidad" placeholder="Cantidad del producto" required><br>' +
+                                            '<input type="text" name="precio" id="txtPrecio" placeholder="Precio del producto" required>' +
+                                            '<input type="hidden" name="producto_id" id="producto_id" value="' + info.codproducto + '" required><br>' +
+                                            '<input type="hidden" name="action" value="addProduct" required>' +
+                                            '<div class="alert alertAddProduct"></div>' +
+                                            '<button type="submit" class="btn_new">Agregar</button>' +
+                                            '<a href="#" class="btn_ok closeModal" onclick="closeModal();">Cerrar</a>' +
+                                            '</form>');
                 }
             },
 
@@ -268,12 +268,13 @@ $(document).ready(function () {
     //validar cantidad del producto antes de agregar
     $('#txt_cant_producto').keyup(function(e){
         e.preventDefault();
+
         var precio_total = $(this).val() * $('#txt_precio').html();
         var existencia = parseInt($('#txt_existencia').html());
         $('#txt_precio_total').html(precio_total);
 
         //ocultar el boton agregar si la cantidad es menor que 1
-        if (($(this).val() < 1 || isNaN($(this).val())) || ($(this).val() > existencia)) {
+        if( ($(this).val() < 1 || isNaN($(this).val())) || ( $(this).val() > existencia) ){
             $('#add_product_venta').slideUp();
         } else {
             $('#add_product_venta').slideDown();
@@ -281,13 +282,13 @@ $(document).ready(function () {
     });
 
     //Agregar producto al detalle
-    $('#add_product_venta').click(function (e) {
+    $('#add_product_venta').click(function(e){
         e.preventDefault();
 
         if ($('#txt_cant_producto').val() > 0) 
         {
             var codproducto = $('#txt_cod_producto').val();
-            var cantidad    = $('#txt-cant_producto').val();
+            var cantidad    = $('#txt_cant_producto').val();
             var action      = 'addProductoDetalle';
 
             $.ajax({
