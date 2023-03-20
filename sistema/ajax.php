@@ -4,7 +4,9 @@ session_start();
 
 if (!empty($_POST)) {
 
-    if ($_POST['action'] == 'infoProducto') {
+    //Extraer datos del producto
+    if($_POST['action'] == 'infoProducto') 
+    {
         $producto_id = $_POST['producto'];
 
         $query = mysqli_query($conection, "SELECT codproducto,descripcion,existencia,precio FROM producto
@@ -14,14 +16,17 @@ if (!empty($_POST)) {
         $result = mysqli_num_rows($query);
         if ($result > 0) {
             $data = mysqli_fetch_assoc($query);
-            echo json_decode($data, JSON_UNESCAPED_UNICODE);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
             exit;
         }
         echo 'error';
         exit;
     }
+    
     //agregar productos a entrada
-    if ($_POST['action'] == 'addProducto') {
+    if ($_POST['action'] == 'addProduct') 
+    {
+
         if (!empty($_POST['cantidad']) || !empty($_POST['precio']) || !empty($_POST['producto_id'])) {
             $cantidad = $_POST['cantidad'];
             $precio = $_POST['precio'];

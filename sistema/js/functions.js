@@ -182,7 +182,7 @@ $(document).ready(function () {
     });
 
     //crear cliente- ventas
-    $('#form_new_cliente_venta').submit(function (e) {
+    $('#form_new_cliente_venta').submit(function(e) {
         e.preventDefault();
 
         $.ajax({
@@ -213,20 +213,24 @@ $(document).ready(function () {
     });
 
     //buscar producto
-    $('#txt_cod_producto').keyup(function (e) {
+    $('#txt_cod_producto').keyup(function(e) {
         e.preventDefault();
 
         var producto = $(this).val();
         var action = 'infoProducto';
-        if (producto != '') {
+
+        if (producto != '') 
+        {
             $.ajax({
                 url: 'ajax.php',
                 type: "POST",
                 async: true,
-                data: { action: action, producto: producto },
+                data: {action:action,producto:producto},
 
-                success: function (response) {
-                    if (response != 'error') {
+                success: function (response) 
+                {
+                    if (response != 'error') 
+                    {
                         var info = JSON.parse(response);
                         $('#txt_descripcion').html(info.descripcion);
                         $('#txt_existencia').html(info.existencia);
@@ -253,10 +257,8 @@ $(document).ready(function () {
                         $('#add_product_venta').slideUp();
                     }
 
-
                 },
-                error: function (error) {
-
+                error: function(error) {
                 }
             });
         }
@@ -264,7 +266,7 @@ $(document).ready(function () {
     });
 
     //validar cantidad del producto antes de agregar
-    $('#txt_cant_producto').keyup(function (e) {
+    $('#txt_cant_producto').keyup(function(e){
         e.preventDefault();
         var precio_total = $(this).val() * $('#txt_precio').html();
         var existencia = parseInt($('#txt_existencia').html());
@@ -282,16 +284,17 @@ $(document).ready(function () {
     $('#add_product_venta').click(function (e) {
         e.preventDefault();
 
-        if ($('#txt_cant_producto').val() > 0) {
+        if ($('#txt_cant_producto').val() > 0) 
+        {
             var codproducto = $('#txt_cod_producto').val();
-            var cantidad = $('#txt-cant_producto').val();
-            var action = 'addProductoDetalle';
+            var cantidad    = $('#txt-cant_producto').val();
+            var action      = 'addProductoDetalle';
 
             $.ajax({
                 url: 'ajax.php',
                 type: "POST",
                 async: true,
-                data: { action: action, producto: codproducto, cantidad: cantidad },
+                data: { action:action,producto:codproducto,cantidad:cantidad},
 
                 success: function (response) 
                 {
