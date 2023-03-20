@@ -253,3 +253,64 @@ input,select{
 	margin: 0 3px;
 	color: #FFF;
 }
+
+/* estilos para la tabla de ventas */
+.form_search_date{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+.form_search_date label{
+    margin: 0 10px;
+}
+.form_search_date input{
+    width: auto;
+}
+.form_search_date .btn_view{
+    padding: 8px;
+}
+.btn_view{
+    background-color: 1faac8;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 3px;
+    color: #FFF;
+}
+/* la cantidad tan grande de flex se debe a que en el tutoria hay estilos como -moz-flex o -ms-flex que no los detecta */
+.div_acciones{
+    display: flex;
+    display: flex;
+    display: flex;
+    display: flex;
+    display: flex;
+    justify-content: center;
+}
+.totalfactura{
+    display: flex;
+    display: flex;
+    display: flex;
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagada, .anulada{
+    color: #FFF;
+    background: #60a756;
+    text-align: center;
+    border-radius: 5px;
+    padding: 4px 15px;
+}
+.anulada{
+    background: #f36a6a;
+}
+.inactive{
+    background-color: #a4a4a4;
+    color: #CCC;
+    cursor: default;
+}

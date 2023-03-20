@@ -1,8 +1,7 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
-                                              
+                        <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>                                           
                     </li>
                     <?php
                         //solo el administrador podra ver esta opcion
@@ -47,9 +46,7 @@
                     <?php } ?>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Productos
-                        </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Productos </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php
                             //solo el rol administrador y supervisor podran ver esta opcion
@@ -63,12 +60,10 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Ventas
-                        </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ventas</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="nueva_venta.php">Nueva venta</a></li>
-                            <li><a class="dropdown-item" href="ventas.php">Ventas</a></li>
+                            <li><a class="dropdown-item" href="ventas.php">lista de Ventas</a></li>
                         </ul>
 
                     </li>
