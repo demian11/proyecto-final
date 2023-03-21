@@ -1,7 +1,7 @@
 <?php
 session_start();
 //si no es administrador o supervisor no tendra permisos de borrar el registro
-if($_SESSION['rol'] =! 1 and $ $_SESSION['rol'] != 2)
+if($_SESSION['rol'] =! 1 and $ $_SESSION['rol'] =! 2)
 {
   header("location: ./");
 }

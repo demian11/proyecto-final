@@ -5,7 +5,7 @@
                     </li>
                     <?php
                         //solo el administrador podra ver esta opcion
-                        if($_SESSION['rol'] == 1){
+                        if($_SESSION['rol'] ==1){
                         ?>
 
                     <li class="nav-item dropdown">

@@ -28,10 +28,10 @@ if (!empty($_POST)) {
     {
 
         if (!empty($_POST['cantidad']) || !empty($_POST['precio']) || !empty($_POST['producto_id'])) {
-            $cantidad = $_POST['cantidad'];
-            $precio = $_POST['precio'];
-            $producto_id = $_POST['producto_id'];
-            $usuario_id = $_SESSION['idUser'];
+            $cantidad     = $_POST['cantidad'];
+            $precio       = $_POST['precio'];
+            $producto_id  = $_POST['producto_id'];
+            $usuario_id   = $_SESSION['idUser'];
 
             $query_insert = mysqli_query($conection, "INSERT INTO entradas 
                 (codproducto,cantidad,precio,usuario_id) value ($producto_id,$cantidad,$precio,$usuario_id) ");
@@ -377,14 +377,15 @@ if (!empty($_POST)) {
     if($_POST['action'] == 'procesarVenta'){
 
         if(empty($_POST['codcliente'])){
-            $codCliente =1;
+            $codcliente = 1;
         }else{
-            $codCliente = $_POST['codcliente'];
+            $codcliente = $_POST['codcliente'];
         }
-        $token   =md5($_SESSION['idUser']);
-        $usuario =$_SESSION['idUser'];
 
-        $query = mysqli_query($conection, "SELECT * FROM detalle_temp WHERE token_user = '$token'");
+        $token    =md5($_SESSION['idUser']);
+        $usuario  =$_SESSION['idUser'];
+
+        $query = mysqli_query($conection, "SELECT * FROM detalle_temp WHERE token_user = '$token' ");
         $result = mysqli_num_rows($query);
 
         if($result > 0)
@@ -392,13 +393,12 @@ if (!empty($_POST)) {
             $query_procesar = mysqli_query($conection, "CALL procesar_venta($usuario,$codcliente,'$token')");
             $result_detalle = mysqli_num_rows($query_procesar);
 
-            if($result_detalle > 0)
-            {
+            if($result_detalle > 0){
                 $data =mysqli_fetch_assoc($query_procesar);
 
                 if($result_detalle > 0){
                     $data = mysqli_fetch_assoc($query_procesar);
-                    echo json_decode($data,JSON_UNESCAPED_UNICODE);
+                    echo json_encode($data,JSON_UNESCAPED_UNICODE);
                 }else{
                     echo "error";
                 }

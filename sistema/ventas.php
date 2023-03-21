@@ -28,7 +28,7 @@ include "../conexion.php";
             <div class="container-fluid">
                 <a href="nueva_venta.php" type="button" class="btn btn-success"> Hacer una nueva venta</a>
 
-                <form action="buscar_venta.php" method="get" class="d-flex" role="search">
+                <form action="buscar_venta.php" method="get" class="d-flex" role="search" class="form_search">
                     <input class="form-control me-2" name="busqueda" id="busqueda" type="search" placeholder="No. Factura" aria-label="Buscar">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
@@ -72,7 +72,7 @@ include "../conexion.php";
             <!--contenido que ayudara para el desplasamiento del paginador-->
             <?php
 
-            $sql_registe = mysqli_query($conection, "SELECT COUNT(*) AS total_registro FROM factura WHERE estatus != 10");
+            $sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM factura WHERE estatus != 10");
             $result_register = mysqli_fetch_array($sql_registe);
             $total_registro = $result_register['total_registro'];
             //en esta linea 43 podremos modificarla para decir cuantos registros podremos ver por pagina
@@ -113,12 +113,12 @@ include "../conexion.php";
             ?>
                     <tbody>
                         <tr id="row_<?php echo $data["nofactura"]; ?>">
-                            <td><?php echo $data["nofactura"] ?></td>
-                            <td><?php echo $data["fecha"] ?></td>
-                            <td><?php echo $data["cliente"] ?></td>
-                            <td><?php echo $data["vendedor"] ?></td>
-                            <td><?php echo $estatus; ?></td>
-                            <td class="textright totalfactura"><span>Q.</span><?php echo $data["totalfactura"]; ?></td>
+                            <td><?php echo $data["nofactura"]; ?></td>
+                            <td><?php echo $data["fecha"]; ?></td>
+                            <td><?php echo $data["cliente"]; ?></td>
+                            <td><?php echo $data["vendedor"]; ?></td>
+                            <td><?php echo $estado; ?></td>
+                            <td class="textright totalfactura"><span>$.</span><?php echo $data["totalfactura"]; ?></td>
 
                             <td>
                                 <div class="div_acciones">
@@ -136,8 +136,7 @@ include "../conexion.php";
                                         <?php     } else {  ?>
 
                                             <div class="div_factura">
-                                                <button type="button" class="btn_anular inactive"><i class="fas fa-ban"></i></button>
-
+                                                <button type="button" class="btn_anular inactive"><i class="fas fa-ban">Eliminar</i></button>
                                             </div>
                                     <?php }
                                     }
@@ -162,9 +161,9 @@ include "../conexion.php";
 
                 for ($i = 1; $i <= $total_paginas; $i++) {
                     if ($i == $pagina) {
-                        echo '<li class="page-item active"><a class="page-link" >' . $i . '</a></li>';
+                        echo '<li class="page-item active"><a class="page-link" >'.$i.'</a></li>';
                     } else {
-                        echo '<li class="page-item"><a class="page-link" href="?pagina=' . $i . '">' . $i . '</a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';
                     }
                 }
                 if ($pagina != $total_paginas) {

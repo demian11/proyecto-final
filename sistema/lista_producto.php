@@ -42,9 +42,9 @@ include "../conexion.php";
           <th>Descripcion</th>
           <th>Precio</th>
           <th>Existencia</th>
-          <th>
+          <th>Proveedor</th>
           <?php
-                $query_proveedor = mysqli_query($conection, "SELECT codproveedor, proveedor FROM proveedor WHERE
+                /*$query_proveedor = mysqli_query($conection, "SELECT codproveedor, proveedor FROM proveedor WHERE
                  estatus=1 ORDER BY proveedor ASC");
                 $result_proveedor = mysqli_num_rows($query_proveedor);
 
@@ -59,7 +59,8 @@ include "../conexion.php";
                     <?php
                         }
                     }
-                    ?>
+                    */?>
+                    
 
                 </select>
           </th>
