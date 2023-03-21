@@ -76,6 +76,7 @@ include "../conexion.php";
         <table class="tbl_venta">
             <thead >
                 <tr>
+                    
                     <th width="100px">Codigo</th>
                     <th>Descripcion</th>
                     <th>Existencia</th>
@@ -85,6 +86,7 @@ include "../conexion.php";
                     <th>Accion</th>
                 </tr>
                 <tr>
+                    <!--tabla en la que se muestra los productos que se desean agregar-->
                     <td><input type="text" name="txt_cod_producto" id="txt_cod_producto"></td>
                     <td id="txt_descripcion">-</td>
                     <td id="txt_existencia">-</td>
@@ -93,6 +95,7 @@ include "../conexion.php";
                     <td id="txt_precio_total" class="textright">0.00</td>
                     <td><a href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i>Agregar</a></td>
                 </tr>
+                <!--tabla en donde se muestran los productos agreggados anteriormente -->
                 <tr>
                     <th>Codigo</th>
                     <th colspan="2">Descripcion</th>

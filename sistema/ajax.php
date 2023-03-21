@@ -313,7 +313,7 @@ if (!empty($_POST)) {
                     $precioTotal = round($data['cantidad'] * $data['precio_venta'], 2);
                     $sub_total   = round($sub_total + $precioTotal, 2);
                     $total       = round($total + $precioTotal, 2);
-                    
+                    // en esta tabla se estan mostrando los datos de los productos
                     //se debe agregar un incono de eliminar dentro de esta seccion y despues eliminar este comentario
                     $detalleTabla .= '<tr>
                                         <td>'.$data['codproducto'].'</td>
@@ -331,7 +331,7 @@ if (!empty($_POST)) {
                 $impuesto = round($sub_total * ($iva / 100), 2);
                 $tl_sniva = round($sub_total - $impuesto, 2);
                 $total    = round($tl_sniva + $impuesto, 2);
-
+                    //aqui se mostrar el total de todos los productos agregados anteriormente 
                 $detalleTotales = '<tr>
                                     <td colspan="5" class="textriggt">Subtotal</td>
                                     <td class="textright">'.$tl_sniva.'</td>
@@ -348,7 +348,7 @@ if (!empty($_POST)) {
                 $arrayData['detalle'] = $detalleTabla;
                 $arrayData['totales'] = $detalleTotales;
 
-                echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+                echo json_encode($arrayData,JSON_UNESCAPED_UNICODE);
             } else {
                 echo 'error';
             }
