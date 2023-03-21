@@ -18,9 +18,134 @@
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
   <?php include "includes/header.php"; ?>
+
   <!--aqui abajo estara todo el contenido de la pagina-->
   <section id="container">
-    <h1>hola</h1>
+    <div class="divContainer">
+      <div>
+        <h1 class="titlePanelControl" id="titlePanelControl">Panel de control </h1>
+      </div>
+      <div>
+      <div class="dashboard">
+        <a href="lista_usuarios.php">
+          <i class="fas fa-users"></i>
+          <p>
+            <strong>Usuarios</strong><br>
+            <span>40</span>
+          </p>
+        </a>
+        <a href="lista_clientes.php">
+          <i class="fas fa-user"></i>
+          <p>
+            <strong>clientes</strong><br>
+            <span>10000</span>
+          </p>
+        </a>
+        <a href="lista_proveedor.php">
+          <i class="far fa-building"></i>
+          <p>
+            <strong>Proveedores</strong><br>
+            <span>200</span>
+          </p>
+        </a>
+        <a href="lista_producto.php">
+          <i class="fas fa-cubes"></i>
+          <p>
+            <strong>Productos</strong><br>
+            <span>100</span>
+          </p>
+        </a>
+        <a href="ventas.php">
+          <i class="far fa-file-alt"></i>
+          <p>
+            <strong>Ventas</strong><br>
+            <span>500</span>
+          </p>
+        </a>
+      </div>
+    </div>
+      <div class="divInfoSistema">
+        <div>
+          <h1 class="titlePanelControl">Configuracion</h1>
+        </div>
+        <div class="containerPerfil">
+          <div class="containerDataUser">
+            <div class="logoUser">
+              <img src="img/logoUser.png" alt="">
+            </div>
+            <div class="divDataUser">
+              <h4>Informacion personal </h4>
+              <div>
+                <label>Nombre:</label> <span>Damian</span>
+              </div>
+              <div>
+                <label>Correo:</label> <span>correo@outlook.com</span>
+              </div>
+              <h4>Datos Usuario</h4>
+              <div>
+                <label >Rol:</label><span>administrador</span>
+              </div>
+              <div>
+                <label>Usuario</label><span>damian</span>
+              </div>
+              <h4>cambiar contraseña</h4>
+              <form action="" method="post" name="frmChangePass" id="frmChangePass">
+                <div>
+                  <input type="passwprd" name="txtPassUser" id="txtPassUser" placeholder="Contraseña actual" required>
+                </div>
+                <div>
+                  <input type="password" name="txtNewPassUser" id="txtNewPassUser" placeholder="Nueva contraseña" required>
+                </div>
+                <div>
+                  <input type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" required>
+                </div>
+                <div>
+                  <button type="submit" class="btn_save btnChangePass"><i class="fas fa-key"></i>Cambiar contraseña</button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+          <div class="containerDataEmpresa">
+          <div class="logoUser">
+              <img src="img/LogoEmpresa.png" alt="">
+            </div>
+            <h4>Datos de la empresa</h4>
+
+            <form action="" method="post" name="frmEmpresa" id="frmEmpresa">
+              <input type="hidden" name="action" value="updateDataEmpresa">
+              <div>
+                <label>Nit:</label><input type="text" name="txtNit" id="txtNit" placeholder="Numero de la empresa" value="" required>
+              </div>
+              <div>
+                <label>Nombre:</label><input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre de la empresa" value="" required>
+              </div>
+              <div>
+                <label>Razon social</label> <input type="text" name="txtRSocial" id="txtRSocial" placeholder="Razon social" value="">
+              </div>
+              <div>
+                <label>Telefono</label><input type="text" name="txtTelEmpresa" id="txtTelEmpresa" placeholder="Numero de telefono" value="" required>
+              </div>
+              <div>
+                <label>Correo electronico</label><input type="email" name="txtEmailEmpresa" id="txtEmailEmpresa" placeholder="Correo electronico" value="" required>
+              </div>
+              <div>
+                <label>Direccion:</label> <input type="text" name="txtDirEmpresa" id="txtEmprea" placeholder="Direccion de la empresa" value="" required>
+              </div>
+              <div>
+                <label>Iva(%)</label> <input type="text" name="txtIva" id="txtIva" placeholder="Impuesto al valor agregago (IVA)" value="" required>
+              </div>
+              <div class="alertFormEmpresa" style="display: none;"></div>
+              <div>
+                <button type=" submit" class="btn_save btnChangePass"><i class="far fa-save fa-lg"></i>Guardar datos</button>
+                </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    
   </section>
 
   <!--Se agreggo una ruta de pide de pagina en caso de usarlo para el proyecto-->
