@@ -125,7 +125,7 @@ include "../conexion.php";
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
                                 
                 <?php if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){ ?>
-              <a class="link_add add_product" product="<?php echo $data["codproducto"] ?>" href="#">Agregar</a>
+             
                     
                 <a class="link_edit" href="editar_producto.php?id=<?php echo $data["codproducto"] ?>">Editar</a>
                   

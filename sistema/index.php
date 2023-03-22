@@ -1,12 +1,11 @@
 <?php 
 	session_start();
-  if(empty($_SESSION['active']))
+  /*if(empty($_SESSION['active']))
   {
     header('location: ../');
-  }
+  } */
  ?>
 <html lang="en">
-
 <head>
   <title>Ciber Center</title>
   <meta charset="utf-8">
@@ -17,8 +16,17 @@
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
-  <?php include "includes/header.php"; ?>
+  <?php 
+  include "includes/header.php";
+  include "../conexion.php";
 
+  $query_dash =mysqli_query($conection,"CALL dataDashboard();");
+  $result_dash =mysqli_num_rows($query_dash);
+  if($result_dash > 0){
+    $data_dash =mysqli_fetch_assoc($query_dash);
+    mysqli_close($conection);
+  }
+  ?>
   <!--aqui abajo estara todo el contenido de la pagina-->
   <section id="container">
     <div class="divContainer">
@@ -27,39 +35,43 @@
       </div>
       <div>
       <div class="dashboard">
+        <?php
+        if($_SESSION['rol'] == 1){
+        ?>
         <a href="lista_usuarios.php">
           <i class="fas fa-users"></i>
           <p>
             <strong>Usuarios</strong><br>
-            <span>40</span>
+            <span><?=$data_dash['usuarios'] ?></span>
           </p>
         </a>
+        <?php } ?>
         <a href="lista_clientes.php">
           <i class="fas fa-user"></i>
           <p>
             <strong>clientes</strong><br>
-            <span>10000</span>
+            <span><?=$data_dash['clientes']; ?></span>
           </p>
         </a>
         <a href="lista_proveedor.php">
           <i class="far fa-building"></i>
           <p>
             <strong>Proveedores</strong><br>
-            <span>200</span>
+            <span><?=$data_dash['proveedores']; ?></span>
           </p>
         </a>
         <a href="lista_producto.php">
           <i class="fas fa-cubes"></i>
           <p>
             <strong>Productos</strong><br>
-            <span>100</span>
+            <span><?=$data_dash['productos']; ?></span>
           </p>
         </a>
         <a href="ventas.php">
           <i class="far fa-file-alt"></i>
           <p>
             <strong>Ventas</strong><br>
-            <span>500</span>
+            <span><?=$data_dash['ventas']; ?></span>
           </p>
         </a>
       </div>
