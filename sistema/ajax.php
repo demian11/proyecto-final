@@ -57,14 +57,14 @@ if (!empty($_POST)) {
     }
 
     //Eliminar producto
-    if ($_POST['action'] == 'delProduct') {
+    if ($_POST['action'] == 'delProduct') 
+    {
         if (empty($_POST['producto_id']) || !is_numeric($_POST['producto_id'])) {
             echo 'error';
         } else {
             //posiblemente corregir el query ya que no pude ver todo
             $idproducto = $_POST['producto_id'];
-            $query_delete = mysqli_query($conection, "UPDATE producto SET estatus = 0
-                idproducto");
+            $query_delete = mysqli_query($conection, "UPDATE producto SET estatus = 0 WHERE codproducto = $idproducto");
             mysqli_close($conection);
 
             if ($query_delete) {
@@ -367,9 +367,93 @@ if (!empty($_POST)) {
         mysqli_close($conection);
         if($query_del){
             echo 'ok';
-        }else{
+        }else
+        {
             echo 'error';
         }
+        exit;
+    }
+
+    //cambiar contraseña desde el index (no se puede cambiar la contraseña de super usuario)
+    if($_POST['action'] == 'changePassword'){
+
+        if(!empty($_POST['passActual']) && !empty($_POST['passNuevo']))
+        {
+            $password = md5($_POST['passActual']);
+            $newPass  = md5($_POST['passNuevo']);
+            $idUser   = $_SESSION['idUser'];
+
+            $code    = '';
+            $msg     = '';
+            $arrData = array();
+
+            $query_user =mysqli_query($conection,"SELECT * FROM usuario
+                                                  WHERE clave = '$password' and idusuario = $idUser");
+            $result = mysqli_num_rows($query_user);
+            if($result > 0)
+            {
+                $query_update =mysqli_query($conection,"UPDATE usuario SET clave = '$newPass' WHERE idusuario = $idUser");
+                mysqli_close($conection);
+                
+                if($query_update){
+                    $code = '00';
+                    $msg = "Su contraseña se ha actualizado correctamente";
+                }else{
+                    $code = '2';
+                    $msg = "No es posible cambiar tu contraseña";
+                }
+            }else{
+                $code = '1';
+                $msg = "La contraseña actual es incorrecta";
+            }
+            $arrData = array('cod' => $code, 'msg' => $msg);
+            echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
+
+        }else{
+            echo "error";
+        }
+        exit;
+    }
+
+    //Actualizar datos empresa
+    if($_POST['action'] == 'updateDataEmpresa'){
+        
+    if(empty($_POST['txtNit']) || empty($_POST['txtNombre']) || empty($_POST['txtRSocial']) || 
+    empty($_POST['txtTelEmpresa']) || empty($_POST['txtEmailEmpresa']) || empty($_POST['txtDirEmpresa']) || 
+    empty($_POST['txtIva']))
+    {
+        $code = '1';
+        $msg= "Todos los campos son obligatorios";
+    }else{
+
+        $intNit = intval($_POST['txtNit']);
+        $strNombre = $_POST['txtNombre'];
+        $strRSocial = $_POST['txtRSocial'];
+        $intTel =intval($_POST['txtTelEmpresa']);
+        $strEmail =$_POST['txtEmailEmpresa'];
+        $strDir  =$_POST['txtDirEmpresa'];
+        $strIva =$_POST['txtIva'];
+
+        $queryUpd = mysqli_query($conection,"UPDATE configuracion SET nit = $intNit,
+                                                                nombre = '$strNombre',
+                                                                razon_social='$strRSocial',
+                                                                telefono = $intTel,
+                                                                email = '$strEmail',
+                                                                direccion = '$strDir',
+                                                                iva = $strIva
+                                                                WHERE id = 1");
+        mysqli_close($conection);
+        if($queryUpd){
+                $code = '00';
+                $msg = "Su contraseña se ha actualizado correctamente";
+            }else{
+                $code = '2';
+                $msg = "No es posible cambiar tu contraseña";
+            }
+
+        }
+        $arrData = array('cod' =>$code, 'msg' => $msg);
+        echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
         exit;
     }
 
@@ -393,7 +477,8 @@ if (!empty($_POST)) {
             $query_procesar = mysqli_query($conection, "CALL procesar_venta($usuario,$codcliente,'$token')");
             $result_detalle = mysqli_num_rows($query_procesar);
 
-            if($result_detalle > 0){
+            if($result_detalle > 0)
+            {
                 $data =mysqli_fetch_assoc($query_procesar);
 
                 if($result_detalle > 0){

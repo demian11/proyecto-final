@@ -31,6 +31,29 @@ body{
   include "includes/header.php";
   include "../conexion.php";
 
+  //datos de la empresa
+  $nit ='';
+  $nombreEmpresa = '';
+  $razonSocial = '';
+  $telEmpresa = '';
+  $emailEmpresa= '';
+  $dirEmpresa = '';
+  $iva = '';
+
+  $query_empresa =mysqli_query($conection,"SELECT * FROM configuracion");
+  $row_empresa = mysqli_num_rows($query_empresa);
+  if($row_empresa > 0)
+  {
+    while($arrInfoEmpresa = mysqli_fetch_assoc($query_empresa)){
+      $nit = $arrInfoEmpresa['nit'];
+      $nombreEmpresa= $arrInfoEmpresa['nombre'];
+      $razonSocial = $arrInfoEmpresa['razon_social'];
+      $telEmpresa = $arrInfoEmpresa['email'];
+      $dirEmpresa =$arrInfoEmpresa['direccion'];
+      $iva = $arrInfoEmpresa['iva'];
+    }
+  }
+
   $query_dash =mysqli_query($conection,"CALL dataDashboard();");
   $result_dash =mysqli_num_rows($query_dash);
   if($result_dash > 0){
@@ -111,55 +134,59 @@ body{
               <div>
                 <label>Usuario</label><span><?= $_SESSION['usuario']; ?></span>
               </div>
+
               <h4>cambiar contraseña</h4>
               <form action="" method="post" name="frmChangePass" id="frmChangePass">
                 <div>
-                  <input type="passwprd" name="txtPassUser" id="txtPassUser" placeholder="Contraseña actual" required>
+                  <input type="password" name="txtPassUser" id="txtPassUser" placeholder="Contraseña actual" 
+                  required>
                 </div>
                 <div>
-                  <input class="newPass" type="password" name="txtNewPassConfirm" id="txtNewPassUser" placeholder="Nueva contraseña" required>
+                  <input class="newPass" type="password" name="txtNewPassUser" id="txtNewPassUser" placeholder="Nueva contraseña" 
+                  required>
                 </div>
                 <div>
-                  <input class="newPass" type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" required>
+                  <input class="newPass" type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" 
+                  required>
                 </div>
                 <div class="alertChangePass" style="display: none;">
                 </div>
                 <div>
                   <button type="submit" class="btn_save btnChangePass"><i class="fas fa-key"></i>Cambiar contraseña</button>
                 </div>
-
               </form>
 
             </div>
           </div>
+          <?php if($_SESSION['rol'] == 1){ ?>
           <div class="containerDataEmpresa">
           <div class="logoUser">
               <img src="img/LogoEmpresa.png" alt="">
             </div>
-            <h4>Datos de la empresa</h4>
 
+            <h4>Datos de la empresa</h4>
             <form action="" method="post" name="frmEmpresa" id="frmEmpresa">
               <input type="hidden" name="action" value="updateDataEmpresa">
               <div>
-                <label>Nit:</label><input type="text" name="txtNit" id="txtNit" placeholder="Numero de la empresa" value="" required>
+                <label>Nit:</label><input type="text" name="txtNit" id="txtNit" placeholder="Numero de la empresa" value="<?= $nit; ?>" required>
               </div>
               <div>
-                <label>Nombre:</label><input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre de la empresa" value="" required>
+                <label>Nombre:</label><input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre de la empresa" value="<?= $nombreEmpresa; ?>" required>
               </div>
               <div>
-                <label>Razon social</label> <input type="text" name="txtRSocial" id="txtRSocial" placeholder="Razon social" value="">
+                <label>Razon social</label> <input type="text" name="txtRSocial" id="txtRSocial" placeholder="Razon social" value="<?= $razonSocial; ?>">
               </div>
               <div>
-                <label>Telefono</label><input type="text" name="txtTelEmpresa" id="txtTelEmpresa" placeholder="Numero de telefono" value="" required>
+                <label>Telefono</label><input type="text" name="txtTelEmpresa" id="txtTelEmpresa" placeholder="Numero de telefono" value="<?= $telEmpresa; ?>" required>
               </div>
               <div>
-                <label>Correo electronico</label><input type="email" name="txtEmailEmpresa" id="txtEmailEmpresa" placeholder="Correo electronico" value="" required>
+                <label>Correo electronico</label><input type="email" name="txtEmailEmpresa" id="txtEmailEmpresa" placeholder="Correo electronico" value="<?= $emailEmpresa; ?>" required>
               </div>
               <div>
-                <label>Direccion:</label> <input type="text" name="txtDirEmpresa" id="txtEmprea" placeholder="Direccion de la empresa" value="" required>
+                <label>Direccion:</label> <input type="text" name="txtDirEmpresa" id="txtEmprea" placeholder="Direccion de la empresa" value="<?= $dirEmpresa; ?>" required>
               </div>
               <div>
-                <label>Iva(%)</label> <input type="text" name="txtIva" id="txtIva" placeholder="Impuesto al valor agregago (IVA)" value="" required>
+                <label>Iva(%)</label> <input type="text" name="txtIva" id="txtIva" placeholder="Impuesto al valor agregago (IVA)" value="<?= $iva; ?>" required>
               </div>
               <div class="alertFormEmpresa" style="display: none;"></div>
               <div>
@@ -167,7 +194,10 @@ body{
                 </div>
               
             </form>
+         
+          
           </div>
+          <?php } ?>
         </div>
       </div>
     

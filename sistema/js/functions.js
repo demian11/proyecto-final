@@ -394,6 +394,10 @@ $(document).ready(function () {
             });
         }
     });
+
+    //Modal form Anular factura
+
+
     //ver factura
     /*
     $('.view_factura').click(function(e){
@@ -409,6 +413,100 @@ $(document).ready(function () {
     validPass();
    });
 
+   //form cambiar contraseña
+   $('#frmChangePass').submit(function(e){
+    e.preventDefault();
+
+    var passActual = $('#txtPassUser').val();
+    var passNuevo  = $('#txtNewPassUser').val();
+    var confirmPassNuevo = $('#txtPassConfirm').val();
+    var action = "changePassword";
+
+    if(passNuevo != confirmPassNuevo){
+        $('.alertChangePass').html('<p style:"red;">Las contraseñas no coiciden</p>');
+        $('.alertChangePass').slideDown();
+        return false;
+    }
+
+    if(passNuevo.length < 5){
+        $('.alertChangePass').html('<p>La nueva contraseña debe ser de minimos 6 caracteres</p>');
+        $('.alertChangePass').slideDown();
+        return false;
+    }
+
+    $.ajax({
+        url:'ajax.php',
+        type: "POST",
+        async: true,
+        data: {action:action,passActual:passActual,passNuevo:passNuevo},
+
+        success: function(response)
+        {        
+            if(response != 'error')
+            {
+                var info =JSON.parse(response);
+                if(info.cod == '00'){
+                    $('.alertChangePass').html('<p style="color:green;">'+info.msg+'</p>');
+                    $('#frmChangePass')[0].reset();
+                }else{
+                    $('.alertChangePass').html('<p style="color:red;">'+info.msg+'</p>');
+                }
+                $('.alertChangePass').slideDown();
+            }
+        },
+        error: function(error){
+        }
+    });
+
+   });
+
+   //actualizar datos de la empresa
+   $('#frmEmpresa').submit(function(e){
+    e.preventDefault();
+
+    var intNit =$('#txtNit').val();
+    var strNombreEmp = $('#txtNombre').val();
+    var strRSocialEmp =$('txtRSocial').val();
+    var intTelEmp =$('txtTelEmpresa').val();
+    var strEmailEmp =$('txtEmailEmpresa').val();
+    var strDirEmp = $('#txtDirEmpresa').var();
+    var intIva =$('txtIva').val();
+
+    if(intNit == '' || strNombreEmp == '' || intTelEmp == ''|| strEmailEmp == '' || strDirEmp == '' || intIva == ''){
+        $('.alertFormEmpresa').html('<p>Todos los campos son obligatorios</p>');
+        $('.alertFormEmpresa').slideDown();
+        return false;
+    }
+
+    $.ajax({
+        url:'ajax.php',
+        type: "POST",
+        async: true,
+        data: $('#frmEmpresa').serialize(),
+        beforeSend: function(){
+            $('.alertFormEmpresa').slideUp();
+            $('.alertFormEmpresa').html('');
+            $('#frmEmpresa input').attr('disabled','disabled');
+        },
+        success: function(response)
+        {
+                var info = JSON.parse(response);
+                if(info.cod == '00'){
+                    $('.alertFormEmpresa').html('<p style="color: #23922d;">'+info.msg+'</p>');
+                    $('.alertFormEmpresa').slideDown();
+                }else{
+                    $('.alertFormEmpresa').html('<p style="color:red;">'+info.msg+'</p>');
+                }
+                $('.alertFormEmpresa').slideDown();
+                $('#frmEmpresa input').removeAttr('disabled');
+            
+        },
+        error:function(error){
+
+        }
+    });
+   });
+
 
 });//end ready
 
@@ -416,7 +514,7 @@ function validPass(){
     var passNuevo =$('#txtNewPassUser').val();
     var confirmPassNuevo =$('#txtPassConfirm').val();
     if(passNuevo != confirmPassNuevo){
-        $('.alertChangePass').html('<p>Las contraseñas no coiciden</p>');
+        $('.alertChangePass').html('<p style:"red;">Las contraseñas no coiciden</p>');
         $('.alertChangePass').slideDown();
         return false;
     }

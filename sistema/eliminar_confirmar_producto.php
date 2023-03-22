@@ -13,7 +13,7 @@ if (!empty($_POST))
 { 
   if(empty($_POST['idproveedor']))
   {
-    header("location: lista_proveedor.php");  
+    header("location: lista_producto.php");  
     mysqli_close($conection);
   }  
   
