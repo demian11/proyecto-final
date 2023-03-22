@@ -88,17 +88,17 @@
             <div class="divDataUser">
               <h4>Informacion personal </h4>
               <div>
-                <label>Nombre:</label> <span>Damian</span>
+                <label>Nombre:</label> <span><?= $_SESSION['nombre']; ?></span>
               </div>
               <div>
-                <label>Correo:</label> <span>correo@outlook.com</span>
+                <label>Correo:</label> <span><?= $_SESSION['correo']; ?></span>
               </div>
               <h4>Datos Usuario</h4>
               <div>
-                <label >Rol:</label><span>administrador</span>
+                <label >Rol:</label><span><?= $_SESSION['rol']; ?></span>
               </div>
               <div>
-                <label>Usuario</label><span>damian</span>
+                <label>Usuario</label><span><?= $_SESSION['usuario']; ?></span>
               </div>
               <h4>cambiar contraseña</h4>
               <form action="" method="post" name="frmChangePass" id="frmChangePass">
