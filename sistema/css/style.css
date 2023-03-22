@@ -400,3 +400,7 @@ input,select{
 .divInfoSistema button{
     width: 100%;
 }
+.alertChangePass{
+    text-align: center;
+    font-weight: bold;
+}

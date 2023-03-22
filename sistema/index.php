@@ -100,23 +100,26 @@
               <div>
                 <label>Usuario</label><span><?= $_SESSION['usuario']; ?></span>
               </div>
+
               <h4>cambiar contraseña</h4>
               <form action="" method="post" name="frmChangePass" id="frmChangePass">
                 <div>
-                  <input type="passwprd" name="txtPassUser" id="txtPassUser" placeholder="Contraseña actual" required>
+                  <input type="password" name="txtPassUser" id="txtPassUser" placeholder="Contraseña actual" 
+                  required>
                 </div>
                 <div>
-                  <input class="newPass" type="password" name="txtNewPassConfirm" id="txtNewPassUser" placeholder="Nueva contraseña" required>
+                  <input class="newPass" type="password" name="txtNewPassUser" id="txtNewPassUser" placeholder="Nueva contraseña" 
+                  required>
                 </div>
                 <div>
-                  <input class="newPass" type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" required>
+                  <input class="newPass" type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" 
+                  required>
                 </div>
                 <div class="alertChangePass" style="display: none;">
                 </div>
                 <div>
                   <button type="submit" class="btn_save btnChangePass"><i class="fas fa-key"></i>Cambiar contraseña</button>
                 </div>
-
               </form>
 
             </div>
