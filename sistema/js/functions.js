@@ -394,9 +394,42 @@ $(document).ready(function () {
             });
         }
     });
+    //ver factura
+    /*
+    $('.view_factura').click(function(e){
+        e.preventDefault();
+        var codCliente =$(this).attr('cl');
+        var noFactura = $(this).attr('f');
+        generarPDF(codCliente,noFactura);
+    });
+    */
+
+   //cambiar contraseña
+   $('.newPass').keyup(function(){
+    validPass();
+   });
 
 
 });//end ready
+
+function validPass(){
+    var passNuevo =$('#txtNewPassUser').val();
+    var confirmPassNuevo =$('#txtPassConfirm').val();
+    if(passNuevo != confirmPassNuevo){
+        $('.alertChangePass').html('<p>Las contraseñas no coiciden</p>');
+        $('.alertChangePass').slideDown();
+        return false;
+    }
+
+    if(passNuevo.length < 6){
+        $('.alertChangePass').html('<p>La nueva contraseña debe ser de minimos 6 caracteres</p>');
+        $('.alertChangePass').slideDown();
+        return false;
+    }
+    
+    $('.alertChangePass').html('');
+    $('.alertChangePass').slideUp();
+}
 
 function generarPDF(cliente,factura){
     var ancho = 1000;

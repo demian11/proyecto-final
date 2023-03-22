@@ -95,7 +95,7 @@
               </div>
               <h4>Datos Usuario</h4>
               <div>
-                <label >Rol:</label><span><?= $_SESSION['rol']; ?></span>
+                <label >Rol:</label><span><?= $_SESSION['rol_name']; ?></span>
               </div>
               <div>
                 <label>Usuario</label><span><?= $_SESSION['usuario']; ?></span>
@@ -106,10 +106,12 @@
                   <input type="passwprd" name="txtPassUser" id="txtPassUser" placeholder="Contraseña actual" required>
                 </div>
                 <div>
-                  <input type="password" name="txtNewPassUser" id="txtNewPassUser" placeholder="Nueva contraseña" required>
+                  <input class="newPass" type="password" name="txtNewPassConfirm" id="txtNewPassUser" placeholder="Nueva contraseña" required>
                 </div>
                 <div>
-                  <input type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" required>
+                  <input class="newPass" type="password" name="txtPassConfirm" id="txtPassConfirm" placeholder="Confirmar contraseña" required>
+                </div>
+                <div class="alertChangePass" style="display: none;">
                 </div>
                 <div>
                   <button type="submit" class="btn_save btnChangePass"><i class="fas fa-key"></i>Cambiar contraseña</button>
