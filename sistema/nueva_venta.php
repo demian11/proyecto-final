@@ -13,7 +13,12 @@ include "../conexion.php";
     <?php include "includes/scripts.php"; ?>
     <title>nueva venta</title>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
     <?php include "includes/header.php"; ?>
 
@@ -24,8 +29,10 @@ include "../conexion.php";
         <div class="datos_cliente">
             <div class="action_cliente">
                 <h4>Datos del cliente</h4>
-                <a href="#" class="btn_new btn_new_cliente"><i class="fas fa-plus"></i>
-                    Nuevo cliente</a>
+                <a href="#" class="btn_new btn_new_cliente">
+                    <img src= "../img/agregar.png" width="30" height="30"> 
+                    <i class="fas fa-plus"></i>
+                 </a>
             </div>
             <form name="form_new_cliente_venta" id="form_new_cliente_venta" class="datos">
                 <input type="hidden" name="action" value="addCliente">
@@ -64,8 +71,14 @@ include "../conexion.php";
                     <div class="wd50">
                         <label>Acciones</label>
                         <div id="acciones_venta">
-                            <a href="#" class="btn_ok textcenter" id="btn_anular_venta"><i class="fas fa-ban"></i>Anular venta</a>
-                            <a href="#" class="btn_new textcenter" id="btn_facturar_venta" style="display: none;"><i class="far fa-edit"></i>Procesar venta</a>
+                            <a href="#" class="btn_ok textcenter" id="btn_anular_venta">
+                            <img src= "../img/block.png" width="30" height="30"> 
+                            <!--<i class="fas fa-ban"></i>-->
+                        </a>
+                            <a href="#" class="btn_new textcenter" id="btn_facturar_venta" style="display: none;">
+                            <img src= "../img/pro.png" width="30" height="30"> 
+                            
+                            <!--<i class="far fa-edit"></i> --></a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +106,8 @@ include "../conexion.php";
                     <td><input type="text" name="txt_cant_producto" id="txt_cant_producto" value="0" min="1" disabled></td>
                     <td id="txt_precio" class="textright">0.00</td>
                     <td id="txt_precio_total" class="textright">0.00</td>
-                    <td><a href="#" id="add_product_venta" class="link_add"><i class="fas fa-plus"></i>Agregar</a></td>
+                    <td><a href="#" id="add_product_venta" class="link_add">
+                    <img src= "../img/agregar1.png" width="30" height="30"></a></td>
                 </tr>
                 <!--tabla en donde se muestran los productos agreggados anteriormente -->
                 <tr>

@@ -65,7 +65,12 @@ if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -80,13 +85,13 @@ if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
         <p class="lead">usuario: <span><?php echo $usuario; ?></span></p>
         <p class="lead">Tipo de usuario: <span><?php echo $rol; ?></span></p>
         <hr class="my-4">
-        <p>Despues de eliminar el usuario no se podra revertiri los cambios</p>
+   
         <p class="lead">
         <!-- aqui estaran los botones que hagan las acciones de eliminar o regresar, por favor no tocar!!!  (69-72)-->
         <form method="post" action="">
           <input type="hidden" name="idusuario" value="<?php echo $idusuario; ?>">
-          <a href="lista_usuarios.php" class="btn btn-primary btn-lg">Cancelar</a>
-          <input type="submit" value="Aceptar" class="btn btn-primary btn-lg">
+          <a href="lista_usuarios.php" class="btn btn-danger btn-lg">Cancelar</a>
+          <input type="submit" value="Aceptar" class="btn btn-warning btn-lg">
         </form>
         </p>
       </div>

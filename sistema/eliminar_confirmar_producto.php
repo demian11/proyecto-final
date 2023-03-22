@@ -57,7 +57,12 @@ if (empty($_REQUEST['id'])) {
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -70,7 +75,7 @@ if (empty($_REQUEST['id'])) {
         <h1 class="display-4">Seguro que quieres eliminar el proveedor?</h1>
         <p class="lead">Nombre del proveedor: <span><?php echo $proveedor; ?></span></p>
         <hr class="my-4">
-        <p>Despues de eliminar el usuario no se podra revertiri los cambios</p>
+     
         <p class="lead">
 
         <!-- aqui estaran los botones que hagan las acciones de eliminar o regresar, por favor no tocar!!!  (69-72)-->

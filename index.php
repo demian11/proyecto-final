@@ -75,6 +75,10 @@ if(!empty($_POST))
             background-image: url(./img/logo.png);
             background-position: center  right;
         }
+        .form-label,h2{
+            color: #ffd700;
+        }
+        
     </style>
 </head>
 <body>
@@ -91,7 +95,7 @@ if(!empty($_POST))
             <!--inicio del login, todo el formulario-->
             <form action="" method="post">
                 <div class="mb-4">
-                    <label for="email" class="form-label">Usuario</label>
+                    <label for="email" class="form-label">Usuario </label>
                     <input type="text" name="usuario" class="form-control" >
                 </div>
 
@@ -103,7 +107,7 @@ if(!empty($_POST))
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
 
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary" name="btningresar">Iniciar sesion</button>
+                <button type="submit" class="btn btn-warning" name="btningresar"><b>Iniciar sesion<b></button>
             </div>
           
         </form>

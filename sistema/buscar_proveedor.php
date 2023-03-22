@@ -16,7 +16,12 @@ include "../conexion.php";
     <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
     <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
 
     <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->

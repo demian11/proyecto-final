@@ -5,7 +5,13 @@
     margin: auto;
 }
 .form_register{
-    color: #3c93b0;
+    color: #0c0c0c;
+}
+.tbl_venta{
+    color: #0c0c0c; 
+}
+.my-4{
+    color: #fddc05;   
 }
 hr{
     border: 0;
@@ -14,6 +20,16 @@ hr{
     margin: 10px 0;
     display: block;
 }
+tr{
+    color: #fddc05; 
+}
+td{
+    color: #fddc05; 
+}
+h1,h4{
+    color: #fddc05;
+}
+
 form{
     background: #fff;
     margin: auto;
@@ -36,9 +52,9 @@ input,select{
 }
 .btn_save{
     font-size: 12pt;
-    background: #12a4c6;
+    background: #ffd700;
     padding: 10px;
-    color: #fff;
+    color: #000000;
     letter-spacing: 1px;
     border: 0;
     cursor: pointer;
@@ -252,7 +268,9 @@ input,select{
 	margin: 0 3px;
 	color: #FFF;
 }
-
+.lead{
+    color: #fddc05;
+}
 /* estilos para la tabla de ventas */
 .form_search_date{
     padding: 10px;
@@ -323,22 +341,30 @@ input,select{
     color: #0a4661;
 }
 .divContainer{
+ 
     margin-bottom: 20px;
 }
+.titlePanelControl{
+    
+    background:#BB1E19;
+    background: linear-gradient(to right,#5B2C6F, #16A085)
+}
 .dashboard{
+    
     display: flex;
     display: flex;
     display: flex;
-  
     justify-content: space-around;
     width: 100%;
     margin: auto;
+    background:#BB1E19;
+    background: linear-gradient(to right,#5B2C6F, #16A085)
 }
 .dashboard a{
-    color: #898989;
+    
+    color: #ffffff;
     width: calc(100% /5);
     padding: 20px;
-    background-color: #FFF;
     font-size: 25pt;
     text-align: center;
 }
@@ -374,10 +400,20 @@ input,select{
     padding: 10px;
     margin: auto;
 }
-.divInfoSistema h4{
-    background: #3279a7;
+.page-link{
+    background: #ffd700;
+    color: #0c0c0c;
+}
+.link_edit{
+    color:#fefefe
+}
+.link_delet{
+    color:#fefefe
+}
+.divInfoSistema h4 {
+    background: #ffd700;
     padding: 5px 10px;
-    color: #FFF;
+    color: #0c0c0c;
     border-radius: 5px;
     text-align: center;
     margin-bottom: 10px;

@@ -59,7 +59,12 @@ if (empty($_REQUEST['id'])) {
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -73,13 +78,13 @@ if (empty($_REQUEST['id'])) {
         <p class="lead">Nombre del cliente: <span><?php echo $nombre; ?></span></p>
         <p class="lead">Nit: <span><?php echo $nit; ?></span></p>
         <hr class="my-4">
-        <p>Despues de eliminar el usuario no se podra revertiri los cambios</p>
+        
         <p class="lead">
         <!-- aqui estaran los botones que hagan las acciones de eliminar o regresar, por favor no tocar!!!  (69-72)-->
         <form method="post" action="">
           <input type="hidden" name="idcliente" value="<?php echo $idcliente; ?>">
-          <a href="lista_clientes.php" class="btn btn-primary btn-lg">Cancelar</a>
-          <input type="submit" value="Eliminar" class="btn btn-primary btn-lg">
+          <a href="lista_clientes.php" class="btn btn-danger btn-lg">Cancelar</a>
+          <input type="submit" value="Eliminar" class="btn btn-warning btn-lg">
         </form>
         </p>
       </div>

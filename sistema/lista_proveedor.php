@@ -16,7 +16,12 @@ include "../conexion.php";
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -97,10 +102,14 @@ include "../conexion.php";
               <td><?php echo $fecha->format('d-m-Y'); ?></td>
               <td>
 
-                <a class="link_edit" href="editar_proveedor.php?id=<?php echo $data["codproveedor"] ?>">Editar</a>
+                <a class="link_edit" href="editar_proveedor.php?id=<?php echo $data["codproveedor"] ?>">
+                <img src= "../img/editar.png" width="30" height="30">
+              </a>
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
                   
-                  <a class="link_delet" href="eliminar_confirmar_proveedor.php?id=<?php echo $data["codproveedor"] ?>">Eliminar</a>
+                  <a class="link_delet" href="eliminar_confirmar_proveedor.php?id=<?php echo $data["codproveedor"] ?>">
+                  <img src= "../img/eliminar.png" width="30" height="30">
+                </a>
                     
                 
               </td>

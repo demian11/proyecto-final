@@ -12,7 +12,18 @@
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        .titlePanelControl,h1{
+            color: #ffd700;
+        }
+        .h1{
+        background: #ffd700;
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -29,7 +40,7 @@
   ?>
   <!--aqui abajo estara todo el contenido de la pagina-->
   <section id="container">
-    <div class="divContainer">
+    <div class="divContainer   ">
       <div>
         <h1 class="titlePanelControl" id="titlePanelControl">Panel de control </h1>
       </div>

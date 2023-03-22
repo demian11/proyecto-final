@@ -12,7 +12,12 @@ include "../conexion.php";
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -127,9 +132,13 @@ include "../conexion.php";
                 <?php if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2){ ?>
              
                     
-                <a class="link_edit" href="editar_producto.php?id=<?php echo $data["codproducto"] ?>">Editar</a>
+                <a class="link_edit" href="editar_producto.php?id=<?php echo $data["codproducto"] ?>">
+                <img src= "../img/editar.png" width="30" height="30">
+              </a>
                   
-                  <a class="link_delet" href="eliminar_confirmar_producto.php?id=<?php echo $data["codproducto"] ?>">Eliminar</a>
+                  <a class="link_delet" href="eliminar_confirmar_producto.php?id=<?php echo $data["codproducto"] ?>">
+                  <img src= "../img/eliminar.png" width="30" height="30">
+                </a>
                   
               </td>
               <?php }?>

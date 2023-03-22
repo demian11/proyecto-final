@@ -17,7 +17,15 @@ include "../conexion.php";
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+        table{
+          color: #fddc05;  
+        }
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -29,7 +37,7 @@ include "../conexion.php";
     <h1>Lista de usuarios</h1>
     <br>
     
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-link bg-link">
   <div class="container-fluid">
   <a href="registro_usuario.php" type="button" class="btn btn-success"> Agregar un nuevo usuario</a>
     <form action="buscar_usuario.php" method="get" class="d-flex" role="search">
@@ -94,14 +102,18 @@ include "../conexion.php";
               <td><?php echo $data["rol"] ?></td>
               <td>
 
-                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"] ?>">Editar</a>
+                <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"] ?>">
+                <img src= "../img/editar.png" width="30" height="30">
+              </a>
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
                 <?php
                 if ($data["idusuario"] != 1) {
 
                 ?>
-                  <a class="link_delet" href="eliminar_confirmar_usuario.php?id=<?php echo $data["idusuario"] ?>">Eliminar</a>
-
+                  <a class="link_delet" href= "eliminar_confirmar_usuario.php?id=<?php echo $data["idusuario"] ?>">
+                <img src= "../img/eliminar.png" width="30" height="30">
+                </a>
+                  
                 <?php } ?>
               </td>
             </tr>

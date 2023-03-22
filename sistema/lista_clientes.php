@@ -12,7 +12,14 @@ include "../conexion.php";
   <!--todo los scripts de los diseños se pasaron en el archivo de scripts.php-->
   <?php include "includes/scripts.php" ?>
 </head>
-
+<style>
+body{
+            background:#BB1E19;
+            background: linear-gradient(to right,#5B2C6F, #16A085)
+        }
+       
+        
+        </style>
 <body>
 
   <!--aqui se incluye el contenido del encabezado desde otro archivo llamado header.php-->
@@ -24,7 +31,7 @@ include "../conexion.php";
     <h1>Lista de clientes</h1>
     <br>
     
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-link bg-link">
   <div class="container-fluid">
   <a href="registro_cliente.php" type="button" class="btn btn-success"> Agregar un nuevo cliente</a>
     <form action="buscar_cliente.php" method="get" class="d-flex" role="search">
@@ -90,12 +97,16 @@ include "../conexion.php";
               <td><?php echo $data["direccion"] ?></td>
               <td>
 
-                <a class="link_edit" href="editar_cliente.php?id=<?php echo $data["idcliente"] ?>">Editar</a>
+                <a class="link_edit" href="editar_cliente.php?id=<?php echo $data["idcliente"] ?>">
+                <img src= "../img/editar.png" width="30" height="30">
+              </a>
                 <!--en esta linea de codigo lo que se hace es no permitir eliminar el super usuario (administrador 1) -->
               
                 <?php if($_SESSION['rol'] ==1){ ?>
                   
-                  <a class="link_delet" href="eliminar_confirmar_cliente.php?id=<?php echo $data["idcliente"] ?>">Eliminar</a>
+                  <a class="link_delet" href="eliminar_confirmar_cliente.php?id=<?php echo $data["idcliente"] ?>">
+                  <img src= "../img/eliminar.png" width="30" height="30">
+                </a>
                   
                   <?php }?>
                 
