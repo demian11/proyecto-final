@@ -158,7 +158,8 @@ body{
 
             </div>
           </div>
-          <?php if($_SESSION['rol'] == 1){ ?>
+          <!--
+          <?//php if($_SESSION['rol'] == 1){ ?>
           <div class="containerDataEmpresa">
           <div class="logoUser">
               <img src="img/LogoEmpresa.png" alt="">
@@ -197,7 +198,8 @@ body{
          
           
           </div>
-          <?php } ?>
+          -->
+          <?//php } ?>
         </div>
       </div>
     
