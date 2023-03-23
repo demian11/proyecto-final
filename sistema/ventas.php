@@ -78,7 +78,7 @@ body{
         <th>--</th>
         <th>Damian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$320</th>
         
       </tr>
       <tr>
@@ -87,7 +87,7 @@ body{
         <th>anette</th>
         <th>derian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$110</th>
        
       </tr>
       <tr>
@@ -105,7 +105,7 @@ body{
         <th>carlos</th>
         <th>Damian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$645</th>
        
       </tr>
       <tr>
@@ -114,7 +114,7 @@ body{
         <th>juan carlos</th>
         <th>jaime</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$200</th>
        
       </tr>
       <tr>
@@ -123,7 +123,7 @@ body{
         <th>omar</th>
         <th>jaime</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$70</th>
        
       </tr>
       <tr>
@@ -132,7 +132,7 @@ body{
         <th>--</th>
         <th>derian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$1200</th>
        
       </tr>
       <tr>
@@ -141,7 +141,7 @@ body{
         <th>--</th>
         <th>Damian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$300</th>
         
       </tr>
       <tr>
@@ -150,7 +150,7 @@ body{
         <th>--</th>
         <th>Juan</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$960</th>
         
       </tr>
       <tr>
@@ -159,7 +159,7 @@ body{
         <th>--</th>
         <th>Damian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$100</th>
         
       </tr>
       <tr>
@@ -168,7 +168,7 @@ body{
         <th>--</th>
         <th>Damian</th>
         <th>Vendido</th>
-        <th>$250</th>
+        <th>$2540</th>
         
       </tr>
       <tr>
