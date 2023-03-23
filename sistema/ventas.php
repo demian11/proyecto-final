@@ -70,13 +70,121 @@ body{
                     <th>Vendedor</th>
                     <th>Estado</th>
                     <th class="textrigh">Total factura</th>
-                    <th class="textrigh">Acciones</th>
+                    <!--<th class="textrigh">Acciones</th>-->
                 </tr>
+                <tr>
+        <th>1</th>
+        <th>18/03/2023</th>
+        <th>--</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
+      <tr>
+      <th>2</th>
+        <th>18/03/2023</th>
+        <th>anette</th>
+        <th>derian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+       
+      </tr>
+      <tr>
+      <th>3</th>
+        <th>18/03/2023</th>
+        <th>--</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
+      <tr>
+      <th>4</th>
+        <th>19/03/2023</th>
+        <th>carlos</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+       
+      </tr>
+      <tr>
+      <th>5</th>
+        <th>19/03/2023</th>
+        <th>juan carlos</th>
+        <th>jaime</th>
+        <th>Vendido</th>
+        <th>$250</th>
+       
+      </tr>
+      <tr>
+      <th>6</th>
+        <th>19/03/2023</th>
+        <th>omar</th>
+        <th>jaime</th>
+        <th>Vendido</th>
+        <th>$250</th>
+       
+      </tr>
+      <tr>
+      <th>7</th>
+        <th>19/03/2023</th>
+        <th>--</th>
+        <th>derian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+       
+      </tr>
+      <tr>
+      <th>8</th>
+        <th>19/03/2023</th>
+        <th>--</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
+      <tr>
+      <th>9</th>
+        <th>19/03/2023</th>
+        <th>--</th>
+        <th>Juan</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
+      <tr>
+      <th>10</th>
+        <th>20/03/2023</th>
+        <th>--</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
+      <tr>
+      <th>11</th>
+        <th>20/03/2023</th>
+        <th>--</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
+      <tr>
+      <th>12</th>
+        <th>20/03/2023</th>
+        <th>--</th>
+        <th>Damian</th>
+        <th>Vendido</th>
+        <th>$250</th>
+        
+      </tr>
             </thead>
 
             <!--contenido que ayudara para el desplasamiento del paginador-->
             <?php
-
+   /*
             $sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM factura WHERE estatus != 10");
             $result_register = mysqli_fetch_array($sql_registe);
             $total_registro = $result_register['total_registro'];
@@ -152,18 +260,19 @@ body{
                 <?php
                 }
             }
+            */
                 ?>
                 </div>
 
                     </tbody>
         </table>
         <!--dentro del paginador le estamos dando la cantidad los registros que tenemos y los divide en distintas tablas-->
-
+            <!--
         <div class="container mt-3 ">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="?pagina=<?php echo 1; ?>">Ir al inicio</a></li>
+                <li class="page-item"><a class="page-link" href="?pagina=<?php //echo 1; ?>">Ir al inicio</a></li>
                 <?php
-
+                    /*
                 for ($i = 1; $i <= $total_paginas; $i++) {
                     if ($i == $pagina) {
                         echo '<li class="page-item active"><a class="page-link" >'.$i.'</a></li>';
@@ -175,9 +284,12 @@ body{
                 ?>
 
                     <li class="page-item"><a class="page-link" href="?pagina=<?php echo $total_paginas; ?>">Ir al final</a></li>
-                <?php } ?>
+                <?php} 
+                
+                */?>
             </ul>
         </div>
+                -->
     </section>
 
     <!--Se agreggo una ruta de pide de pagina en caso de usarlo para el proyecto-->
