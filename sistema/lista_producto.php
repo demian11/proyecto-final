@@ -29,7 +29,7 @@ body{
     <h1>Lista de productos</h1>
     <br>
     
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-link bg-link">
   <div class="container-fluid">
   <a href="registro_producto.php" type="button" class="btn btn-success"> Agregar un nuevo producto</a>
     <form action="buscar_cliente.php" method="get" class="d-flex" role="search">

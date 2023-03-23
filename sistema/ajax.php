@@ -162,7 +162,9 @@ if (!empty($_POST)) {
                     <td class="textright">' . $data['precio_venta'] . '</td>
                     <td class="textright">' . $precioTotal . '</td>
                     <td class="">
-                        <a class="link_delete" href="#" onclick="event.preventDefault(); del_product_detalle('.$data['codproducto'].');"><i class="far fa-trash-alt"></i></a>
+                        <a class="link_delete" href="#" onclick="event.preventDefault(); del_product_detalle('.$data['codproducto'].');">
+               
+                        <i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>';
                 }
@@ -248,7 +250,9 @@ if (!empty($_POST)) {
                                         <td class="textright">'.$precioTotal.'</td>
                                         <td class="">
                                             <a class="link_delete" href="#" onclick="event.preventDefault(); 
-                                            del_product_detalle('.$data['correlativo'].');"><i class="far fa-trash-alt"></i>eliminar</a>
+                                            del_product_detalle('.$data['correlativo'].');">
+                                            <img src= "../img/eliminar.png" width="30" height="30">
+                                            
                                         </td>
                                     </tr>';
                 }

@@ -81,8 +81,8 @@ body{
         <!-- aqui estaran los botones que hagan las acciones de eliminar o regresar, por favor no tocar!!!  (69-72)-->
         <form method="post" action="">
           <input type="hidden" name="proveedor" value="<?php echo $idproveedor; ?>">
-          <a href="lista_proveedor.php" class="btn btn-primary btn-lg">Cancelar</a>
-          <input type="submit" value="Eliminar" class="btn btn-primary btn-lg">
+          <a href="lista_proveedor.php" class="btn btn-danger btn-lg">Cancelar</a>
+          <input type="submit" value="Eliminar" class="btn btn-warning btn-lg">
         </form>
         </p>
       </div>

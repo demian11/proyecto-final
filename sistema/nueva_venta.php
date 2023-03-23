@@ -72,11 +72,11 @@ body{
                         <label>Acciones</label>
                         <div id="acciones_venta">
                             <a href="#" class="btn_ok textcenter" id="btn_anular_venta">
-                            <img src= "../img/block.png" width="30" height="30"> 
+                            <img src= "../img/pro.png" width="30" height="30"> 
                             <!--<i class="fas fa-ban"></i>-->
                         </a>
                             <a href="#" class="btn_new textcenter" id="btn_facturar_venta" style="display: none;">
-                            <img src= "../img/pro.png" width="30" height="30"> 
+                            <img src= "../img/block.png" width="30" height="30"> 
                             
                             <!--<i class="far fa-edit"></i> --></a>
                         </div>

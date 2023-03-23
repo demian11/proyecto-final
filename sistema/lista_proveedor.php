@@ -33,7 +33,7 @@ body{
     <h1>Lista de proveedores</h1>
     <br>
     
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-link bg-link">
   <div class="container-fluid">
   <a href="registro_proveedor.php" type="button" class="btn btn-success"> Agregar un nuevo proveedor</a>
     <form action="buscar_proveedor.php" method="get" class="d-flex" role="search">

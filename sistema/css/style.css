@@ -4,6 +4,12 @@
     width: 450px;
     margin: auto;
 }
+#detalleTabla>{
+   color: #0c0c0c; 
+}
+table tbody{
+   background-color: #eef0de;   
+}
 .form_register{
     color: #0c0c0c;
 }
